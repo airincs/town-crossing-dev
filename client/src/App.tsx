@@ -1,9 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Container, Flex } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { getNotes } from "./actions/notes";
 import Bulletin from "./components/Bulletin/Bulletin";
 import NoteForm from "./components/NoteForm/NoteForm";
 
 const App: FC = () => {
+  const dispatch = useDispatch<any>();
+
+  useEffect(() => {
+    dispatch(getNotes());
+  }, [dispatch]);
+
   return (
     <div>
       <Container
