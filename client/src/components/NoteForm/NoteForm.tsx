@@ -11,11 +11,14 @@ const NoteForm: FC = () => {
     creator: "creator",
   });
 
+  const dispatch = useDispatch<any>();
+
   useEffect(() => {
-    dispatch(createNote(noteData));
+    //dispatch(createNote(noteData));
+    console.log(noteData);
   }, [noteData]);
 
-  const dispatch = useDispatch<any>();
+  //https://stackoverflow.com/questions/53253940/make-react-useeffect-hook-not-run-on-initial-render
 
   const formik = useFormik({
     initialValues: {
@@ -29,8 +32,10 @@ const NoteForm: FC = () => {
         message: values.message,
         creator: "creator",
       });
+      //dispatch(createNote(noteData));
     },
   });
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
