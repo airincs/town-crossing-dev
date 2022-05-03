@@ -1,6 +1,4 @@
 import * as api from '../api';
-import { AnyAction } from 'redux'
-import { ThunkAction } from 'redux-thunk'
 
 export const getNotes = () => async (dispatch: any) => {
   try {
@@ -9,4 +7,13 @@ export const getNotes = () => async (dispatch: any) => {
   } catch (error: any) {
     console.log(error.message)
   } 
+}
+
+export const createNote = (note: any) => async (dispatch: any) => {
+  try {
+    const {data} = await api.createNote(note);
+    dispatch({type: 'CREATE_NOTE', payload: data})
+  } catch (error) {
+    console.log(error);
+  }
 }

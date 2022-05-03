@@ -24,9 +24,7 @@ const App: FC = () => {
         <Flex direction={"column"}>
           <Bulletin />
         </Flex>
-        <Flex direction={"column"}>
-          <NoteForm />
-        </Flex>
+        <NoteForm />
       </Container>
     </div>
   );
