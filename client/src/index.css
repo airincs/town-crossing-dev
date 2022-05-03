@@ -3,10 +3,4 @@ body, html {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  font-family: OpenSans, 'Segoe UI', serif;
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  src: local("OpenSans"), url('./fonts/OpenSans-Regular.ttf') format('truetype');
 }
