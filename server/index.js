@@ -7,11 +7,11 @@ import noteRoutes from "./routes/notes.js";
 
 const app = express();
 
-app.use("/notes", noteRoutes);
-
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
+
+app.use("/notes", noteRoutes);
 
 const CONNECTION_URL =
   "mongodb+srv://airincompsci:airincompsci123@cluster0.ixigq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";

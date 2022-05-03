@@ -10,7 +10,7 @@ export const getNotes = async (req, res) => {
 };
 
 export const createNote = async (req, res) => {
-  const post = req.body;
+  const note = req.body;
   const newNote = new PostNote(note);
 
   try {
