@@ -1,24 +1,34 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import { useFormik } from "formik";
 import { Flex, Button } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { createNote } from "../../actions/notes";
 
 const NoteForm: FC = () => {
+  const dispatch = useDispatch<any>();
   const [noteData, setNoteData] = useState({
     title: "",
     message: "",
     creator: "creator",
   });
 
-  const dispatch = useDispatch<any>();
+  const useFirstRender = () => {
+    const firstRender = useRef(true);
+    useEffect(() => {
+      firstRender.current = false;
+    }, []);
+    return firstRender.current;
+  };
+
+  const firstRender = useFirstRender();
+  const dispatchRef = useRef(null);
 
   useEffect(() => {
-    //dispatch(createNote(noteData));
-    console.log(noteData);
+    if (!firstRender) {
+      console.log(noteData);
+      dispatch(createNote(noteData));
+    }
   }, [noteData]);
-
-  //https://stackoverflow.com/questions/53253940/make-react-useeffect-hook-not-run-on-initial-render
 
   const formik = useFormik({
     initialValues: {
@@ -32,7 +42,6 @@ const NoteForm: FC = () => {
         message: values.message,
         creator: "creator",
       });
-      //dispatch(createNote(noteData));
     },
   });
 
