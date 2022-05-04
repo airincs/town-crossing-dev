@@ -4,7 +4,12 @@ import { Flex, Button } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { createNote } from "../../actions/notes";
 
-const NoteForm: FC = () => {
+type AppProps = {
+  currentNoteId: any;
+  setCurrentNoteId: any;
+};
+
+const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
   const dispatch = useDispatch<any>();
   const [noteData, setNoteData] = useState({
     title: "",
@@ -21,11 +26,9 @@ const NoteForm: FC = () => {
   };
 
   const firstRender = useFirstRender();
-  const dispatchRef = useRef(null);
 
   useEffect(() => {
     if (!firstRender) {
-      console.log(noteData);
       dispatch(createNote(noteData));
     }
   }, [noteData]);

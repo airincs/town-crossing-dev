@@ -17,3 +17,12 @@ export const createNote = (note: any) => async (dispatch: any) => {
     console.log(error);
   }
 }
+
+export const deleteNote = (id: any) => async (dispatch: any) => {
+  try {
+    await api.deleteNote(id);
+    dispatch({type: "DELETE_NOTE", payload: id})
+  } catch (error) {
+    console.log(error)
+  }
+}
