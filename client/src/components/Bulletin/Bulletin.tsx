@@ -13,13 +13,13 @@ const Bulletin: FC = () => {
     <Flex>
       <Flex direction={"column"}>
         <div>Bulletin</div>
-        <div>
+        <Flex direction={"column-reverse"}>
           {notes.map((note: any) => (
             <div key={note._id}>
               <Note note={note} />
             </div>
           ))}
-        </div>
+        </Flex>
       </Flex>
       <Flex>
         <NoteForm
