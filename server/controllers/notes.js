@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import PostNote from "../models/postNote.js";
 
 export const getNotes = async (req, res) => {
@@ -19,4 +20,12 @@ export const createNote = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
+};
+
+export const deleteNote = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("Id not found");
+  await PostNote.findByIdAndRemove(id);
+  res.json({ message: "Note deleted" });
 };
