@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Flex } from "@chakra-ui/react";
 import NoteForm from "../NoteForm/NoteForm";
 import Note from "./Note/Note";
-import { deleteNote } from "../../actions/notes";
+import { deleteNote, loveNote } from "../../actions/notes";
 
 const Bulletin: FC = () => {
   const notes = useSelector((state: any) => state.notes);

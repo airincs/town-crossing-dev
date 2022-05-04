@@ -26,3 +26,12 @@ export const deleteNote = (id: any) => async (dispatch: any) => {
     console.log(error)
   }
 }
+
+export const loveNote = (id: any) => async (dispatch: any) => {
+  try{
+    const { data } = await api.loveNote(id);
+    dispatch({type: 'LOVE_NOTE', payload: data})
+  } catch (error) {
+    console.log(error)
+  }
+}

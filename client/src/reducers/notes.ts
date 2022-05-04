@@ -6,6 +6,8 @@ export default (notes = [], action: any) => {
       return [...notes, action.payload];
     case 'DELETE_NOTE':
       return notes.filter((note: any) => note._id !== action.payload);
+    case 'LOVE_NOTE':
+      return notes.map((note: any) => note._id == action.payload._id ? action.payload : note);
     default:
       return notes;
   }
