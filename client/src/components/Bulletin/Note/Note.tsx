@@ -12,13 +12,22 @@ const Note = ({ note }: AppProps) => {
   const dispatch = useDispatch<any>();
 
   return (
-    <Box w={"100px"} h={"100px"}>
+    <Box w={"100px"} h={"100px"} marginBottom={"45px"}>
       <Text fontSize="xs">Title: {note.title} </Text>
       <Text fontSize="xs">Message: {note.message}</Text>
       <Text fontSize="xs">By: {note.creator}</Text>
       <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
       <Button size={"xs"} onClick={() => dispatch(loveNote(note._id))}>
         <Text fontSize="xs">Love: {note.loveCount}</Text>
+      </Button>
+      <Button
+        size={"xs"}
+        marginTop={"5px"}
+        onClick={() => {
+          dispatch(deleteNote(note._id));
+        }}
+      >
+        Delete Note!
       </Button>
     </Box>
   );
