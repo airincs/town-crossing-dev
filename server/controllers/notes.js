@@ -29,3 +29,18 @@ export const deleteNote = async (req, res) => {
   await PostNote.findByIdAndRemove(id);
   res.json({ message: "Note deleted" });
 };
+
+export const loveNote = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("Id not found");
+  const note = await PostNote.findById(id);
+  const updatedNote = await PostNote.findByIdAndUpdate(
+    id,
+    {
+      loveCount: note.loveCount + 1,
+    },
+    { new: true }
+  );
+  res.json(updatedNote);
+};
