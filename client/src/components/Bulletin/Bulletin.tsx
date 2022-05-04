@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Flex } from "@chakra-ui/react";
 import NoteForm from "../NoteForm/NoteForm";
@@ -8,11 +8,23 @@ import { deleteNote } from "../../actions/notes";
 const Bulletin: FC = () => {
   const notes = useSelector((state: any) => state.notes);
   const [currentNoteId, setCurrentNoteId] = useState<any>(null);
-  const [deleteId, setDeleteId] = useState<any>();
+  const [deleteId, setDeleteId] = useState<any>(null);
   const dispatch = useDispatch<any>();
 
+  const useFirstRender = () => {
+    const firstRender = useRef(true);
+    useEffect(() => {
+      firstRender.current = false;
+    }, []);
+    return firstRender.current;
+  };
+
+  const firstRender = useFirstRender();
+
   useEffect(() => {
-    dispatch(deleteNote(deleteId));
+    if (!firstRender) {
+      dispatch(deleteNote(deleteId));
+    }
   }, [deleteId]);
 
   return (
