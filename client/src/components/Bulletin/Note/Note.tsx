@@ -9,11 +9,11 @@ type AppProps = {
 const Note = ({ note }: AppProps) => {
   return (
     <Box w={"100px"} h={"100px"}>
-      <Text fontSize="xs">{note.title} </Text>
-      <Text fontSize="xs">{note.message}</Text>
-      <Text fontSize="xs">{note.creator}</Text>
+      <Text fontSize="xs">Title: {note.title} </Text>
+      <Text fontSize="xs">Message: {note.message}</Text>
+      <Text fontSize="xs">By: {note.creator}</Text>
       <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
-      <Text fontSize="xs">{note.loveCount}</Text>
+      <Text fontSize="xs">Love: {note.loveCount}</Text>
     </Box>
   );
 };
