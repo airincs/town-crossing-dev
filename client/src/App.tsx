@@ -1,31 +1,18 @@
-import React, { FC, useEffect } from "react";
-import { Container, Flex } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
-import { getNotes } from "./actions/notes";
-import Bulletin from "./components/Bulletin/Bulletin";
-import NoteForm from "./components/NoteForm/NoteForm";
+import React, { FC } from "react";
+import BulletinPage from "./pages/BulletinPage";
+import Home from "./pages/Home";
+import Header from "./components/Header/Header";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App: FC = () => {
-  const dispatch = useDispatch<any>();
-
-  useEffect(() => {
-    dispatch(getNotes());
-  }, [dispatch]);
-
   return (
-    <div>
-      <Container
-        display={"flex"}
-        justifyContent={"space-around"}
-        bg={"blackAlpha.400"}
-        maxW={{ base: "100vw", md: "80vw" }}
-        minH={"100vh"}
-      >
-        <Flex direction={"column"}>
-          <Bulletin />
-        </Flex>
-      </Container>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/bulletin" element={<BulletinPage />} />
+      </Routes>
+    </Router>
   );
 };
 
