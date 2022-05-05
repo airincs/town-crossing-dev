@@ -15,9 +15,6 @@ app.use(cors());
 
 app.use("/notes", noteRoutes);
 
-//const CONNECTION_URL =
-//  "mongodb+srv://airincompsci:airincompsci123@cluster0.ixigq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
 const PORT = process.env.PORT || 3001;
 
 mongoose
