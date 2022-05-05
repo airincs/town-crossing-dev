@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, { FC, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Flex } from "@chakra-ui/react";
 import NoteForm from "../NoteForm/NoteForm";
