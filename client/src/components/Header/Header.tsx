@@ -1,14 +1,24 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Flex, Button, Avatar, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Header: FC = () => {
-  const user: any = null;
+  const [user, setUser] = useState<any>();
+
+  useEffect(() => {
+    const value = localStorage.getItem("profile");
+    if (typeof value === "string") {
+      const parse = JSON.parse(value);
+      setUser(parse);
+    }
+  }, []);
+
+  console.log(user);
 
   return (
     <Flex
       maxW={"100vw"}
-      h={"60px"}
+      h={"100px"}
       bg={"teal.200"}
       justify={"center"}
       align={"center"}
