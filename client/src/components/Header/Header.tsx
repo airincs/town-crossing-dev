@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Avatar, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Header: FC = () => {
+  const user: any = null;
+
   return (
     <Flex
       maxW={"100vw"}
@@ -11,7 +13,18 @@ const Header: FC = () => {
       justify={"center"}
       align={"center"}
     >
-      <Button>Login</Button>
+      {user ? (
+        <Flex direction={"column"} w={"100px"} h={"50px"}>
+          <Avatar name={user.result.name} src={user.result.profilePic} />
+          <Text fontSize={"xs"}>{user.result.name}</Text>
+          <Button>Logout</Button>
+        </Flex>
+      ) : (
+        <Button>
+          <Link to="/login">Login</Link>
+        </Button>
+      )}
+
       <Button>
         <Link to="/">Home</Link>
       </Button>
