@@ -13,10 +13,12 @@ import { useFormik } from "formik";
 import avatars from "../components/Avatars/avatars";
 import GoogleLogin from "react-google-login";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login: FC = () => {
   const dispatch = useDispatch();
   const isSignUp = true;
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -34,6 +36,7 @@ const Login: FC = () => {
     const token = res?.tokenId;
     try {
       dispatch({ type: "AUTH", data: { result, token } });
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

@@ -1,9 +1,14 @@
 import React, { FC, useState, useEffect } from "react";
 import { Flex, Button, Avatar, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header: FC = () => {
   const [user, setUser] = useState<any>();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const value = localStorage.getItem("profile");
@@ -11,9 +16,13 @@ const Header: FC = () => {
       const parse = JSON.parse(value);
       setUser(parse);
     }
-  }, []);
+  }, [location]);
 
-  console.log(user);
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+    setUser(null);
+  };
 
   return (
     <Flex
@@ -27,7 +36,7 @@ const Header: FC = () => {
         <Flex direction={"column"} w={"100px"} h={"50px"}>
           <Avatar name={user.result.name} src={user.result.profilePic} />
           <Text fontSize={"xs"}>{user.result.name}</Text>
-          <Button>Logout</Button>
+          <Button onClick={logout}>Logout</Button>
         </Flex>
       ) : (
         <Button>
