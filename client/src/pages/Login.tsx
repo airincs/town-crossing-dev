@@ -44,6 +44,12 @@ const Login: FC = () => {
     }
   }, [signUpData]);
 
+  useEffect(() => {
+    if (!firstRender) {
+      dispatch<any>(signin(signInData, navigate));
+    }
+  }, [signInData]);
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -67,7 +73,8 @@ const Login: FC = () => {
           username: values.username,
           password: values.password,
         });
-        dispatch<any>(signin(signInData, navigate));
+        //dispatch<any>(signin(signInData, navigate));
+        console.log("sign in: ", values.username);
       }
     },
   });
