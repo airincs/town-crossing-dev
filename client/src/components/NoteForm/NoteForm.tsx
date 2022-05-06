@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect, useRef } from "react";
 import { useFormik } from "formik";
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Box } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { createNote } from "../../actions/notes";
 
@@ -11,10 +11,11 @@ type AppProps = {
 
 const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
   const dispatch = useDispatch<any>();
+  const user = JSON.parse(localStorage.getItem("profile")!);
+  console.log(user.result.username);
   const [noteData, setNoteData] = useState({
     title: "",
     message: "",
-    creator: "creator",
   });
 
   const useFirstRender = () => {
@@ -29,7 +30,7 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
 
   useEffect(() => {
     if (!firstRender) {
-      dispatch(createNote(noteData));
+      dispatch(createNote({ ...noteData, username: user?.result?.username }));
     }
   }, [noteData]);
 
@@ -43,10 +44,13 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
         ...noteData,
         title: values.title,
         message: values.message,
-        creator: "creator",
       });
     },
   });
+
+  if (!user?.result?.username) {
+    return <Box>Please Sign In to participate</Box>;
+  }
 
   return (
     <div>

@@ -12,7 +12,11 @@ export const getNotes = async (req, res) => {
 
 export const createNote = async (req, res) => {
   const note = req.body;
-  const newNote = new PostNote(note);
+  const newNote = new PostNote({
+    ...note,
+    creator: req.userId,
+    timeCreated: new Date().toISOString(),
+  });
 
   try {
     await newNote.save();
