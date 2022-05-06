@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import noteRoutes from "./routes/notes.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 
 app.use("/notes", noteRoutes);
+app.use("/users", userRoutes);
 
 const PORT = process.env.PORT || 3001;
 

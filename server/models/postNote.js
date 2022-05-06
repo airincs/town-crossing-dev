@@ -5,8 +5,8 @@ const postSchema = mongoose.Schema({
   message: String,
   creator: String,
   loveCount: {
-    type: Number,
-    default: 0,
+    type: [String],
+    default: [],
   },
   timeCreated: {
     type: Date,

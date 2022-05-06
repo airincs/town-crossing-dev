@@ -6,11 +6,12 @@ import {
   loveNote,
 } from "../controllers/notes.js";
 
+import auth from "../middleware/auth.js";
 const router = express.Router();
 
 router.get("/", getNotes);
-router.post("/", createNote);
-router.delete("/:id", deleteNote);
-router.patch("/:id/loveCount", loveNote);
+router.post("/", auth, createNote);
+router.delete("/:id", auth, deleteNote);
+router.patch("/:id/loveCount", auth, loveNote);
 
 export default router;

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import {
   Flex,
   Container,
@@ -14,20 +14,61 @@ import avatars from "../components/Avatars/avatars";
 import GoogleLogin from "react-google-login";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { signin, signup } from "../actions/auth";
 
 const Login: FC = () => {
+  const [signUpStatus, setSignUpStatus] = useState(true);
+  const [signInData, setSignInData] = useState<any>(null);
+  const [signUpData, setSignUpData] = useState<any>(null);
   const dispatch = useDispatch();
-  const isSignUp = true;
   const navigate = useNavigate();
+
+  const signUpStatusToggle = () => {
+    if (signUpStatus) setSignUpStatus(false);
+    else setSignUpStatus(true);
+  };
+
+  const useFirstRender = () => {
+    const firstRender = useRef(true);
+    useEffect(() => {
+      firstRender.current = false;
+    }, []);
+    return firstRender.current;
+  };
+
+  const firstRender = useFirstRender();
+
+  useEffect(() => {
+    if (!firstRender) {
+      dispatch<any>(signup(signUpData, navigate));
+    }
+  }, [signUpData]);
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      avatar: avatars[0].image,
+      username: "",
+      avatar: "thisIsAvatar",
+      password: "",
+      confirmPassword: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      if (signUpStatus) {
+        setSignUpData({
+          ...signUpData,
+          username: values.username,
+          password: values.password,
+          avatar: "thisIsAvatar",
+        });
+        //dispatch<any>(signup(signUpData, navigate));
+        console.log("this is key: ", values.username);
+      } else {
+        setSignInData({
+          ...signInData,
+          username: values.username,
+          password: values.password,
+        });
+        dispatch<any>(signin(signInData, navigate));
+      }
     },
   });
 
@@ -54,31 +95,38 @@ const Login: FC = () => {
       maxW={{ base: "100vw", md: "80vw" }}
       minH={"100vh"}
     >
-      <Text>{isSignUp ? "Sign Up!" : "Sign In!"}</Text>
+      <Text>{signUpStatus ? "Sign Up!" : "Sign In!"}</Text>
       <form onSubmit={formik.handleSubmit}>
-        {isSignUp ? (
+        {signUpStatus ? (
           <>
-            <label>First Name:</label>
+            <label>Username:</label>
             <input
-              id="firstName"
-              name="firstName"
+              id="username"
+              name="username"
               onChange={formik.handleChange}
-              value={formik.values.firstName}
+              value={formik.values.username}
             />
-            <label>Last Name:</label>
+            <label>Password:</label>
             <input
-              id="lastName"
-              name="lastName"
+              id="password"
+              name="password"
               onChange={formik.handleChange}
-              value={formik.values.lastName}
+              value={formik.values.password}
+            />
+            <label>Confirm Password:</label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              onChange={formik.handleChange}
+              value={formik.values.confirmPassword}
             />
             <RadioGroup id="avatar">
               <Grid templateColumns={"repeat(5, 1fr)"} gridAutoRows={"60px"}>
                 {avatars.map((avatar) => (
                   <Radio
                     key={avatar.id}
-                    value={avatar.image}
-                    onChange={formik.handleChange}
+                    //value={avatar.image}
+                    //onChange={formik.handleChange}
                   >
                     <Box w={"40px"} h={"40px"} css={{ curser: "pointer" }}>
                       <img src={avatar.image}></img>
@@ -87,7 +135,6 @@ const Login: FC = () => {
                 ))}
               </Grid>
             </RadioGroup>
-            <Button type={"submit"}>Submit</Button>
             <GoogleLogin
               clientId={`${process.env.REACT_APP_CLIENT_ID}`}
               render={(renderProps: any) => (
@@ -104,9 +151,53 @@ const Login: FC = () => {
             />
           </>
         ) : (
-          <div>signin</div>
+          <Flex direction={"column"}>
+            <label>Username:</label>
+            <input
+              id="username"
+              name="username"
+              onChange={formik.handleChange}
+              value={formik.values.username}
+            />
+            <label>Password:</label>
+            <input
+              id="password"
+              name="password"
+              onChange={formik.handleChange}
+              value={formik.values.password}
+            />
+            <label>Confirm Password:</label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              onChange={formik.handleChange}
+              value={formik.values.confirmPassword}
+            />
+            <GoogleLogin
+              clientId={`${process.env.REACT_APP_CLIENT_ID}`}
+              render={(renderProps: any) => (
+                <Button
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Google Sign In
+                </Button>
+              )}
+              onSuccess={googleSuccess}
+              onFailure={googleFailure}
+              cookiePolicy="single_host_origin"
+            />
+          </Flex>
         )}
+        <Button type={"submit"}>Submit</Button>
       </form>
+      <Button
+        onClick={() => {
+          signUpStatusToggle();
+        }}
+      >
+        {signUpStatus ? "Click to sign in!" : "Click to sign up!"}
+      </Button>
     </Container>
   );
 };

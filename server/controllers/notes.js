@@ -32,15 +32,18 @@ export const deleteNote = async (req, res) => {
 
 export const loveNote = async (req, res) => {
   const { id } = req.params;
+
+  if (!req.userId) return res.json({ message: "Does not have permission" });
+
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("Id not found");
   const note = await PostNote.findById(id);
-  const updatedNote = await PostNote.findByIdAndUpdate(
-    id,
-    {
-      loveCount: note.loveCount + 1,
-    },
-    { new: true }
-  );
+  const index = note.loveCount.findIndex((id) => id == String(req.userId));
+  if (index == -1) {
+    note.loveCount.push(req.userId);
+  } else {
+    note.loveCount = note.loveCount.filter((id) => id !== String(req.userId));
+  }
+  const updatedNote = await PostNote.findByIdAndUpdate(id, note, { new: true });
   res.json(updatedNote);
 };
