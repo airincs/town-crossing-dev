@@ -53,7 +53,7 @@ const Login: FC = () => {
   const formik = useFormik({
     initialValues: {
       username: "",
-      avatar: "thisIsAvatar",
+      avatar: avatars[0].image,
       password: "",
       confirmPassword: "",
     },
@@ -63,10 +63,10 @@ const Login: FC = () => {
           ...signUpData,
           username: values.username,
           password: values.password,
-          avatar: "thisIsAvatar",
+          avatar: values.avatar,
         });
         //dispatch<any>(signup(signUpData, navigate));
-        console.log("this is key: ", values.username);
+        console.log("this is key: ", values.avatar);
       } else {
         setSignInData({
           ...signInData,
@@ -132,11 +132,11 @@ const Login: FC = () => {
                 {avatars.map((avatar) => (
                   <Radio
                     key={avatar.id}
-                    //value={avatar.image}
-                    //onChange={formik.handleChange}
+                    value={avatar.image}
+                    onChange={formik.handleChange}
                   >
                     <Box w={"40px"} h={"40px"} css={{ curser: "pointer" }}>
-                      <img src={avatar.image}></img>
+                      <img src={avatar.image} />
                     </Box>
                   </Radio>
                 ))}

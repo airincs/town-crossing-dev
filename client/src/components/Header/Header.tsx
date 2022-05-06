@@ -34,7 +34,7 @@ const Header: FC = () => {
     >
       {user ? (
         <Flex direction={"column"} w={"100px"} h={"50px"}>
-          <Avatar name={user.result.name} src={user.result.profilePic} />
+          <Avatar name={user.result.username} src={user.result.avatar} />
           <Text fontSize={"xs"}>{user.result.name}</Text>
           <Button onClick={logout}>Logout</Button>
         </Flex>
