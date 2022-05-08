@@ -12,7 +12,7 @@ type AppProps = {
 const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
   const dispatch = useDispatch<any>();
   const user = JSON.parse(localStorage.getItem("profile")!);
-  console.log(user.result.username);
+  //console.log(user.result.username);
   const [noteData, setNoteData] = useState({
     title: "",
     message: "",

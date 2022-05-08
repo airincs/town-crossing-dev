@@ -10,6 +10,7 @@ type AppProps = {
 
 const Note = ({ note }: AppProps) => {
   const dispatch = useDispatch<any>();
+  const user = JSON.parse(localStorage.getItem("profile")!);
 
   return (
     <Box w={"100px"} h={"100px"} marginBottom={"45px"}>
@@ -18,7 +19,7 @@ const Note = ({ note }: AppProps) => {
       <Text fontSize="xs">By: {note.creator}</Text>
       <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
       <Button size={"xs"} onClick={() => dispatch(loveNote(note._id))}>
-        <Text fontSize="xs">Love: {note.loveCount}</Text>
+        <Text fontSize="xs">Love: {note.loveCount.length}</Text>
       </Button>
       <Button
         size={"xs"}

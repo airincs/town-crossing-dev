@@ -16,7 +16,7 @@ const Header: FC = () => {
       const parse = JSON.parse(value);
       setUser(parse);
     }
-  }, [location]);
+  }, []);
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -34,8 +34,8 @@ const Header: FC = () => {
     >
       {user ? (
         <Flex direction={"column"} w={"100px"} h={"50px"}>
-          <Avatar name={user.result.username} src={user.result.avatar} />
-          <Text fontSize={"xs"}>{user.result.name}</Text>
+          <Avatar name={user.result.avatar} src={user.result.avatar} />
+          <Text fontSize={"xs"}>{user.result.username}</Text>
           <Button onClick={logout}>Logout</Button>
         </Flex>
       ) : (
