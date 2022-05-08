@@ -64,16 +64,12 @@ const Login: FC = () => {
           password: values.password,
           avatar: values.avatar,
         });
-        //dispatch<any>(signup(signUpData, navigate));
-        console.log("this is key: ", values.avatar);
       } else {
         setSignInData({
           ...signInData,
           username: values.username,
           password: values.password,
         });
-        //dispatch<any>(signin(signInData, navigate));
-        console.log("sign in: ", values.username);
       }
     },
   });
@@ -115,6 +111,8 @@ const Login: FC = () => {
               <Grid templateColumns={"repeat(5, 1fr)"} gridAutoRows={"60px"}>
                 {avatars.map((avatar) => (
                   <Radio
+                    id="avatar"
+                    name="avatar"
                     key={avatar.id}
                     value={avatar.image}
                     onChange={formik.handleChange}
