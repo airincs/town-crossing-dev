@@ -94,20 +94,31 @@ const Login: FC = () => {
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
+      paddingBottom={"5vh"}
+      paddingTop={"5vh"}
       justifyContent={"center"}
-      paddingBottom={"10vh"}
-      bg={"blackAlpha.400"}
       maxW={{ base: "100vw", md: "80vw" }}
-      minH={"90vh"}
+      minH={"95vh"}
     >
-      <Box maxW={"320px"}>
+      <Box
+        bg={"gray.700"}
+        padding={"50px"}
+        rounded={"25px"}
+        shadow={"2xl"}
+        color={"white"}
+      >
         <Flex justify={"center"}>
           <Text>{signUpStatus ? "SIGN UP!" : "SIGN IN!"}</Text>
         </Flex>
         <form onSubmit={formik.handleSubmit}>
           {signUpStatus ? (
             <>
-              <Flex direction={"column"} maxW={"320px"}>
+              <Flex
+                direction={"column"}
+                align={"center"}
+                justify={"center"}
+                maxW={"80vw"}
+              >
                 <FormLabel marginTop={"20px"}>Username:</FormLabel>
                 <input
                   id="username"
@@ -116,7 +127,7 @@ const Login: FC = () => {
                   value={formik.values.username}
                 />
                 {formik.touched.username && formik.errors.username ? (
-                  <Heading color={"blackAlpha.900"} fontSize={"sm"}>
+                  <Heading color={"red.300"} fontSize={"sm"}>
                     {formik.errors.username}
                   </Heading>
                 ) : null}
@@ -128,7 +139,7 @@ const Login: FC = () => {
                   value={formik.values.password}
                 />
                 {formik.touched.password && formik.errors.password ? (
-                  <Heading color={"blackAlpha.900"} fontSize={"sm"}>
+                  <Heading color={"red.300"} fontSize={"sm"}>
                     {formik.errors.password}
                   </Heading>
                 ) : null}
@@ -141,33 +152,44 @@ const Login: FC = () => {
                 />
                 {formik.touched.confirmPassword &&
                 formik.errors.confirmPassword ? (
-                  <Heading color={"blackAlpha.900"} fontSize={"sm"}>
+                  <Heading color={"red.300"} fontSize={"sm"}>
                     {formik.errors.confirmPassword}
                   </Heading>
                 ) : null}
               </Flex>
-              <RadioGroup id="avatar">
-                <Grid templateColumns={"repeat(5, 1fr)"} gridAutoRows={"60px"}>
-                  {avatars.map((avatar) => (
-                    <Radio
-                      id="avatar"
-                      name="avatar"
-                      key={avatar.id}
-                      value={avatar.image}
-                      onChange={formik.handleChange}
-                    >
-                      <Box w={"40px"} h={"40px"} css={{ curser: "pointer" }}>
-                        <img src={avatar.image} />
-                      </Box>
-                    </Radio>
-                  ))}
-                </Grid>
-              </RadioGroup>
-              {formik.touched.avatar && formik.errors.avatar ? (
-                <Heading color={"blackAlpha.900"} fontSize={"sm"} w={"320px"}>
-                  {formik.errors.avatar}
-                </Heading>
-              ) : null}
+              <Flex
+                w={"768px"}
+                maxW={"80vw"}
+                justify={"center"}
+                align={"center"}
+                direction={"column"}
+              >
+                <RadioGroup id="avatar">
+                  <Grid
+                    templateColumns={"repeat(5, 1fr)"}
+                    gridAutoRows={"60px"}
+                  >
+                    {avatars.map((avatar) => (
+                      <Radio
+                        id="avatar"
+                        name="avatar"
+                        key={avatar.id}
+                        value={avatar.image}
+                        onChange={formik.handleChange}
+                      >
+                        <Box w={"40px"} h={"40px"} css={{ curser: "pointer" }}>
+                          <img src={avatar.image} />
+                        </Box>
+                      </Radio>
+                    ))}
+                  </Grid>
+                </RadioGroup>
+                {formik.touched.avatar && formik.errors.avatar ? (
+                  <Heading color={"red.300"} fontSize={"sm"} w={"320px"}>
+                    {formik.errors.avatar}
+                  </Heading>
+                ) : null}
+              </Flex>
             </>
           ) : (
             <Flex direction={"column"}>
@@ -198,20 +220,20 @@ const Login: FC = () => {
             </Flex>
           )}
           <Button
-            bg={"red.300"}
+            bg={"cyan.300"}
             type={"submit"}
             w={"full"}
             mb={"10px"}
             marginTop={"20px"}
-            color={"white"}
+            color={"black"}
           >
             SUBMIT!
           </Button>
 
           <Button
             w={"full"}
-            bg={"red.500"}
-            color={"white"}
+            bg={"cyan.500"}
+            color={"black"}
             onClick={() => {
               signUpStatusToggle();
             }}

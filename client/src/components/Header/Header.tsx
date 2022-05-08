@@ -27,11 +27,12 @@ const Header: FC = () => {
   return (
     <Flex
       maxW={"100vw"}
-      h={"10vh"}
-      bg={"teal.200"}
+      h={"5vh"}
+      bg={"gray.700"}
       justify={"center"}
       align={"center"}
       gap={"10px"}
+      shadow={"md"}
     >
       <Button>
         <Link to="/">Home</Link>
