@@ -14,6 +14,7 @@ const postSchema = mongoose.Schema({
     default: new Date(),
   },
   avatar: String,
+  color: String,
 });
 
 const PostNote = mongoose.model("PostNote", postSchema);

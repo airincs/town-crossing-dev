@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect, useRef } from "react";
 import { useFormik } from "formik";
-import { Flex, Button, Box } from "@chakra-ui/react";
+import { Flex, Button, Box, Radio, RadioGroup } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { createNote } from "../../actions/notes";
 
@@ -15,7 +15,7 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
   const [noteData, setNoteData] = useState({
     title: "",
     message: "",
-    //avatar: "",
+    color: "",
   });
 
   const useFirstRender = () => {
@@ -44,14 +44,14 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
     initialValues: {
       title: "",
       message: "",
-      //avatar: "",
+      color: "red.100",
     },
     onSubmit: (values) => {
       setNoteData({
         ...noteData,
         title: values.title,
         message: values.message,
-        //avatar: user.avatar,
+        color: values.color,
       });
     },
   });
@@ -81,6 +81,60 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
             value={formik.values.message}
           />
         </Flex>
+        <RadioGroup>
+          <Radio
+            id="color"
+            name="color"
+            value={"red.100"}
+            onChange={formik.handleChange}
+          >
+            <Box
+              bg={"red.100"}
+              w={"40px"}
+              h={"40px"}
+              css={{ curser: "pointer" }}
+            ></Box>
+          </Radio>
+          <Radio
+            id="color"
+            name="color"
+            value={"green.100"}
+            onChange={formik.handleChange}
+          >
+            <Box
+              bg={"green.100"}
+              w={"40px"}
+              h={"40px"}
+              css={{ curser: "pointer" }}
+            ></Box>
+          </Radio>
+          <Radio
+            id="color"
+            name="color"
+            value={"teal.100"}
+            onChange={formik.handleChange}
+          >
+            <Box
+              bg={"teal.100"}
+              w={"40px"}
+              h={"40px"}
+              css={{ curser: "pointer" }}
+            ></Box>
+          </Radio>
+          <Radio
+            id="color"
+            name="color"
+            value={"purple.100"}
+            onChange={formik.handleChange}
+          >
+            <Box
+              bg={"purple.100"}
+              w={"40px"}
+              h={"40px"}
+              css={{ curser: "pointer" }}
+            ></Box>
+          </Radio>
+        </RadioGroup>
         <Button type="submit">Submit</Button>
       </form>
       <Button onClick={() => console.log(noteData)}>Show State</Button>

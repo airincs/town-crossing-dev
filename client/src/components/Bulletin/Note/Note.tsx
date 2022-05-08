@@ -5,6 +5,7 @@ import {
   Button,
   createStandaloneToast,
   Avatar,
+  Flex,
 } from "@chakra-ui/react";
 import { deleteNote, loveNote } from "../../../actions/notes";
 import { useDispatch } from "react-redux";
@@ -30,7 +31,16 @@ const Note = ({ note }: AppProps) => {
   };
 
   return (
-    <Box w={"100px"} h={"100px"} marginBottom={"80px"}>
+    <Flex
+      direction={"column"}
+      rounded={"25px"}
+      justify={"center"}
+      align={"center"}
+      bg={note.color}
+      w={"100px"}
+      h={"200px"}
+      marginBottom={"80px"}
+    >
       <Avatar name={note.avatar} src={note.avatar} />
       <Text fontSize="xs">Title: {note.title} </Text>
       <Text fontSize="xs">Message: {note.message}</Text>
@@ -45,8 +55,8 @@ const Note = ({ note }: AppProps) => {
           <Text fontSize="xs">Love: {note.loveCount.length}</Text>
         </Button>
       )}
-      {(user?.result?.googleId == note?.creator ||
-        user?.result?._id == note?.creator) && (
+      {(user?.result?.googleId === note?.creator ||
+        user?.result?._id === note?.creator) && (
         <Button
           size={"xs"}
           marginTop={"5px"}
@@ -57,7 +67,7 @@ const Note = ({ note }: AppProps) => {
           Delete Note!
         </Button>
       )}
-    </Box>
+    </Flex>
   );
 };
 
