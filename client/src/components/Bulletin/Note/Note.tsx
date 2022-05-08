@@ -1,5 +1,11 @@
 import React, { FC } from "react";
-import { Box, Text, Button, createStandaloneToast } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Button,
+  createStandaloneToast,
+  Avatar,
+} from "@chakra-ui/react";
 import { deleteNote, loveNote } from "../../../actions/notes";
 import { useDispatch } from "react-redux";
 import moment from "moment";
@@ -24,7 +30,8 @@ const Note = ({ note }: AppProps) => {
   };
 
   return (
-    <Box w={"100px"} h={"100px"} marginBottom={"45px"}>
+    <Box w={"100px"} h={"100px"} marginBottom={"80px"}>
+      <Avatar name={note.avatar} src={note.avatar} />
       <Text fontSize="xs">Title: {note.title} </Text>
       <Text fontSize="xs">Message: {note.message}</Text>
       <Text fontSize="xs">By: {note.username}</Text>

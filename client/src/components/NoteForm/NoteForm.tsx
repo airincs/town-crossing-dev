@@ -12,10 +12,10 @@ type AppProps = {
 const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
   const dispatch = useDispatch<any>();
   const user = JSON.parse(localStorage.getItem("profile")!);
-  //console.log(user.result.username);
   const [noteData, setNoteData] = useState({
     title: "",
     message: "",
+    //avatar: "",
   });
 
   const useFirstRender = () => {
@@ -30,7 +30,13 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
 
   useEffect(() => {
     if (!firstRender) {
-      dispatch(createNote({ ...noteData, username: user?.result?.username }));
+      dispatch(
+        createNote({
+          ...noteData,
+          username: user?.result?.username,
+          avatar: user?.result?.avatar,
+        })
+      );
     }
   }, [noteData]);
 
@@ -38,12 +44,14 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
     initialValues: {
       title: "",
       message: "",
+      //avatar: "",
     },
     onSubmit: (values) => {
       setNoteData({
         ...noteData,
         title: values.title,
         message: values.message,
+        //avatar: user.avatar,
       });
     },
   });
