@@ -16,7 +16,7 @@ const Note = ({ note }: AppProps) => {
     <Box w={"100px"} h={"100px"} marginBottom={"45px"}>
       <Text fontSize="xs">Title: {note.title} </Text>
       <Text fontSize="xs">Message: {note.message}</Text>
-      <Text fontSize="xs">By: {note.creator}</Text>
+      <Text fontSize="xs">By: {note.username}</Text>
       <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
       <Button size={"xs"} onClick={() => dispatch(loveNote(note._id))}>
         <Text fontSize="xs">Love: {note.loveCount.length}</Text>
