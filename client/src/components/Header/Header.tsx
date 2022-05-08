@@ -27,7 +27,7 @@ const Header: FC = () => {
   return (
     <Flex
       maxW={"100vw"}
-      h={"100px"}
+      h={"10vh"}
       bg={"teal.200"}
       justify={"center"}
       align={"center"}
