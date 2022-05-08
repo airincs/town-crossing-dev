@@ -15,8 +15,8 @@ const Note = ({ note }: AppProps) => {
   const NotLoggedInAlert = () => {
     const toast = createStandaloneToast();
     return toast({
-      title: "Can not like!",
-      description: "Must log in to like a post!",
+      title: "Can not love!",
+      description: "Must log in to love a post!",
       status: "error",
       duration: 3000,
       isClosable: true,
@@ -38,15 +38,18 @@ const Note = ({ note }: AppProps) => {
           <Text fontSize="xs">Love: {note.loveCount.length}</Text>
         </Button>
       )}
-      <Button
-        size={"xs"}
-        marginTop={"5px"}
-        onClick={() => {
-          dispatch(deleteNote(note._id));
-        }}
-      >
-        Delete Note!
-      </Button>
+      {(user?.result?.googleId == note?.creator ||
+        user?.result?._id == note?.creator) && (
+        <Button
+          size={"xs"}
+          marginTop={"5px"}
+          onClick={() => {
+            dispatch(deleteNote(note._id));
+          }}
+        >
+          Delete Note!
+        </Button>
+      )}
     </Box>
   );
 };

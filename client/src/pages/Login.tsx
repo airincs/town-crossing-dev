@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import avatars from "../components/Avatars/avatars";
-import GoogleLogin from "react-google-login";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../actions/auth";
@@ -79,21 +78,6 @@ const Login: FC = () => {
     },
   });
 
-  const googleSuccess = async (res: any) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
-    try {
-      dispatch({ type: "AUTH", data: { result, token } });
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const googleFailure = (error: any) => {
-    console.log(error);
-    console.log("GOOGLE SIGN IN FAILURE");
-  };
-
   return (
     <Container
       display={"flex"}
@@ -142,20 +126,6 @@ const Login: FC = () => {
                 ))}
               </Grid>
             </RadioGroup>
-            <GoogleLogin
-              clientId={`${process.env.REACT_APP_CLIENT_ID}`}
-              render={(renderProps: any) => (
-                <Button
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  Google Sign In
-                </Button>
-              )}
-              onSuccess={googleSuccess}
-              onFailure={googleFailure}
-              cookiePolicy="single_host_origin"
-            />
           </>
         ) : (
           <Flex direction={"column"}>
@@ -179,20 +149,6 @@ const Login: FC = () => {
               name="confirmPassword"
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
-            />
-            <GoogleLogin
-              clientId={`${process.env.REACT_APP_CLIENT_ID}`}
-              render={(renderProps: any) => (
-                <Button
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  Google Sign In
-                </Button>
-              )}
-              onSuccess={googleSuccess}
-              onFailure={googleFailure}
-              cookiePolicy="single_host_origin"
             />
           </Flex>
         )}
