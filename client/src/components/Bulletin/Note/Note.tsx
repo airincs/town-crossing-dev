@@ -39,9 +39,15 @@ const Note = ({ note }: AppProps) => {
       bg={note.color}
       w={"100px"}
       h={"200px"}
-      marginBottom={"80px"}
+      marginBottom={"5px"}
+      textAlign={"center"}
     >
-      <Avatar name={note.avatar} src={note.avatar} />
+      <Avatar
+        bg={"transparent"}
+        size={"md"}
+        name={note.avatar}
+        src={note.avatar}
+      />
       <Text fontSize="xs">Title: {note.title} </Text>
       <Text fontSize="xs">Message: {note.message}</Text>
       <Text fontSize="xs">By: {note.username}</Text>

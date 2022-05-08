@@ -22,10 +22,7 @@ const Bulletin: FC = () => {
         </Flex>
       </Flex>
       <Flex>
-        <NoteForm
-          currentNoteId={currentNoteId}
-          setCurrentNoteId={setCurrentNoteId}
-        />
+        <NoteForm />
       </Flex>
     </Flex>
   );

@@ -141,13 +141,6 @@ const Login: FC = () => {
               onChange={formik.handleChange}
               value={formik.values.password}
             />
-            <label>Confirm Password:</label>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              onChange={formik.handleChange}
-              value={formik.values.confirmPassword}
-            />
           </Flex>
         )}
         <Button type={"submit"}>Submit</Button>

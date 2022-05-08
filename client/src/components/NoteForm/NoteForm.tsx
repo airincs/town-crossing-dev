@@ -4,12 +4,7 @@ import { Flex, Button, Box, Radio, RadioGroup } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { createNote } from "../../actions/notes";
 
-type AppProps = {
-  currentNoteId: any;
-  setCurrentNoteId: any;
-};
-
-const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
+const NoteForm: FC = () => {
   const dispatch = useDispatch<any>();
   const user = JSON.parse(localStorage.getItem("profile")!);
   const [noteData, setNoteData] = useState({
@@ -92,6 +87,7 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
               bg={"red.100"}
               w={"40px"}
               h={"40px"}
+              rounded={"15px"}
               css={{ curser: "pointer" }}
             ></Box>
           </Radio>
@@ -105,6 +101,7 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
               bg={"green.100"}
               w={"40px"}
               h={"40px"}
+              rounded={"15px"}
               css={{ curser: "pointer" }}
             ></Box>
           </Radio>
@@ -118,6 +115,7 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
               bg={"teal.100"}
               w={"40px"}
               h={"40px"}
+              rounded={"15px"}
               css={{ curser: "pointer" }}
             ></Box>
           </Radio>
@@ -131,6 +129,7 @@ const NoteForm = ({ currentNoteId, setCurrentNoteId }: AppProps) => {
               bg={"purple.100"}
               w={"40px"}
               h={"40px"}
+              rounded={"15px"}
               css={{ curser: "pointer" }}
             ></Box>
           </Radio>

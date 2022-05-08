@@ -31,25 +31,34 @@ const Header: FC = () => {
       bg={"teal.200"}
       justify={"center"}
       align={"center"}
+      gap={"10px"}
     >
-      {user ? (
-        <Flex direction={"column"} w={"100px"} h={"50px"}>
-          <Avatar name={user.result.avatar} src={user.result.avatar} />
-          <Text fontSize={"xs"}>{user.result.username}</Text>
-          <Button onClick={logout}>Logout</Button>
-        </Flex>
-      ) : (
-        <Button>
-          <Link to="/login">Login</Link>
-        </Button>
-      )}
-
       <Button>
         <Link to="/">Home</Link>
       </Button>
       <Button>
         <Link to="/bulletin">Bulletin</Link>
       </Button>
+      {user ? (
+        <>
+          <Flex direction={"column"} w={"100px"} align={"center"}>
+            <Avatar
+              bg={"transparent"}
+              size={"md"}
+              name={user.result.avatar}
+              src={user.result.avatar}
+            />
+            <Text fontSize={"xs"}>{user.result.username}</Text>
+          </Flex>
+          <Button h={"50px"} onClick={logout}>
+            Logout
+          </Button>{" "}
+        </>
+      ) : (
+        <Button>
+          <Link to="/login">Login</Link>
+        </Button>
+      )}
     </Flex>
   );
 };
