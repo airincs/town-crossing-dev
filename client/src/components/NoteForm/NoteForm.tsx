@@ -14,6 +14,7 @@ import {
   DrawerBody,
   FormLabel,
   Input,
+  Text,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { createNote } from "../../actions/notes";
@@ -88,12 +89,20 @@ const NoteForm = () => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Enter!</DrawerHeader>
-          <DrawerBody>
+          <DrawerHeader
+            borderBottomWidth="1px"
+            display={"flex"}
+            justifyContent={"center"}
+          >
+            Post a Note on the Bulletin!
+          </DrawerHeader>
+          <DrawerBody display={"flex"} justifyContent={"center"}>
             <div>
               <form onSubmit={formik.handleSubmit}>
-                <Flex>
-                  <FormLabel>Title:</FormLabel>
+                <Flex align={"center"}>
+                  <FormLabel>
+                    <Text fontWeight={"600"}>Title:</Text>
+                  </FormLabel>
                   <Input
                     ref={firstField}
                     id="title"
@@ -102,8 +111,10 @@ const NoteForm = () => {
                     value={formik.values.title}
                   />
                 </Flex>
-                <Flex>
-                  <FormLabel>Message</FormLabel>
+                <Flex align={"center"}>
+                  <FormLabel>
+                    <Text fontWeight={"600"}>Message:</Text>
+                  </FormLabel>
                   <Input
                     id="message"
                     name="message"
@@ -111,69 +122,70 @@ const NoteForm = () => {
                     value={formik.values.message}
                   />
                 </Flex>
-                <RadioGroup>
-                  <Radio
-                    id="color"
-                    name="color"
-                    value={"red.100"}
-                    onChange={formik.handleChange}
-                  >
-                    <Box
-                      bg={"red.100"}
-                      w={"40px"}
-                      h={"40px"}
-                      rounded={"15px"}
-                      css={{ curser: "pointer" }}
-                    ></Box>
-                  </Radio>
-                  <Radio
-                    id="color"
-                    name="color"
-                    value={"green.100"}
-                    onChange={formik.handleChange}
-                  >
-                    <Box
-                      bg={"green.100"}
-                      w={"40px"}
-                      h={"40px"}
-                      rounded={"15px"}
-                      css={{ curser: "pointer" }}
-                    ></Box>
-                  </Radio>
-                  <Radio
-                    id="color"
-                    name="color"
-                    value={"teal.100"}
-                    onChange={formik.handleChange}
-                  >
-                    <Box
-                      bg={"teal.100"}
-                      w={"40px"}
-                      h={"40px"}
-                      rounded={"15px"}
-                      css={{ curser: "pointer" }}
-                    ></Box>
-                  </Radio>
-                  <Radio
-                    id="color"
-                    name="color"
-                    value={"purple.100"}
-                    onChange={formik.handleChange}
-                  >
-                    <Box
-                      bg={"purple.100"}
-                      w={"40px"}
-                      h={"40px"}
-                      rounded={"15px"}
-                      css={{ curser: "pointer" }}
-                    ></Box>
-                  </Radio>
-                </RadioGroup>
-                <Button type="submit" onClick={handleSubmit}>
+                <Flex justify={"center"}>
+                  <RadioGroup>
+                    <Radio
+                      id="color"
+                      name="color"
+                      value={"red.100"}
+                      onChange={formik.handleChange}
+                    >
+                      <Box
+                        bg={"red.100"}
+                        w={"40px"}
+                        h={"40px"}
+                        rounded={"15px"}
+                        css={{ curser: "pointer" }}
+                      ></Box>
+                    </Radio>
+                    <Radio
+                      id="color"
+                      name="color"
+                      value={"green.100"}
+                      onChange={formik.handleChange}
+                    >
+                      <Box
+                        bg={"green.100"}
+                        w={"40px"}
+                        h={"40px"}
+                        rounded={"15px"}
+                        css={{ curser: "pointer" }}
+                      ></Box>
+                    </Radio>
+                    <Radio
+                      id="color"
+                      name="color"
+                      value={"teal.100"}
+                      onChange={formik.handleChange}
+                    >
+                      <Box
+                        bg={"teal.100"}
+                        w={"40px"}
+                        h={"40px"}
+                        rounded={"15px"}
+                        css={{ curser: "pointer" }}
+                      ></Box>
+                    </Radio>
+                    <Radio
+                      id="color"
+                      name="color"
+                      value={"purple.100"}
+                      onChange={formik.handleChange}
+                    >
+                      <Box
+                        bg={"purple.100"}
+                        w={"40px"}
+                        h={"40px"}
+                        rounded={"15px"}
+                        css={{ curser: "pointer" }}
+                      ></Box>
+                    </Radio>
+                  </RadioGroup>
+                </Flex>
+                <Button type="submit" onClick={handleSubmit} w={"100%"}>
                   Submit
                 </Button>
               </form>
-              <Button onClick={() => console.log(noteData)}>Show State</Button>
             </div>
           </DrawerBody>
         </DrawerContent>

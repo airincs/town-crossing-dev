@@ -57,18 +57,6 @@ const Note = ({ note }: AppProps) => {
           src={note.avatar}
         />
         <Text fontSize="md">{note.username}</Text>
-      </Flex>
-      <Flex
-        direction={"column"}
-        align={"flex-start"}
-        justify={"flex-start"}
-        width={"70%"}
-        maxH={"100px"}
-      >
-        <Text fontSize="xl" fontWeight={"600"} height={"30px"}>
-          {note.title}
-        </Text>
-        <Text fontSize="sm">{note.message}</Text>
         {!user?.result ? (
           <Button size={"sm"} mt={"5px"} onClick={() => NotLoggedInAlert()}>
             <Text fontSize="sm">Love: {note.loveCount.length}</Text>
@@ -78,7 +66,22 @@ const Note = ({ note }: AppProps) => {
             <Text fontSize="xs">Love: {note.loveCount.length}</Text>
           </Button>
         )}
-        <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
+      </Flex>
+      <Flex
+        direction={"row"}
+        align={"flex-start"}
+        justify={"flex-start"}
+        width={"70%"}
+        maxH={"100px"}
+      >
+        <Flex direction={"column"}>
+          <Text fontSize="xl" fontWeight={"600"} height={"30px"}>
+            {note.title}
+          </Text>
+          <Text fontSize="sm">{note.message}</Text>
+
+          <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
+        </Flex>
         {(user?.result?.googleId === note?.creator ||
           user?.result?._id === note?.creator) && (
           <Button
