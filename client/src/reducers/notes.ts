@@ -5,7 +5,7 @@ export default (notes = [], action: any) => {
     case FETCH_ALL_NOTES:
       return action.payload;
     case CREATE_NOTE:
-      return [...notes, action.payload];
+      return [action.payload, ...notes];
     case DELETE_NOTE:
       return notes.filter((note: any) => note._id !== action.payload);
     case LOVE_NOTE:

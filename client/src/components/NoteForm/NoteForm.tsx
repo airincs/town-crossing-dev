@@ -69,7 +69,7 @@ const NoteForm = () => {
   });
 
   if (!user?.result?.username) {
-    return <Box>Please Sign In to participate</Box>;
+    return <Box>Please Sign In to Post a Note</Box>;
   }
 
   const handleSubmit = () => {
@@ -78,8 +78,8 @@ const NoteForm = () => {
 
   return (
     <>
-      <Button color={"black"} onClick={onOpen}>
-        Open
+      <Button color={"black"} bg={"cyan.300"} onClick={onOpen}>
+        Post a Note!
       </Button>
       <Drawer
         placement={"bottom"}

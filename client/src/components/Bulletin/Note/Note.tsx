@@ -6,10 +6,13 @@ import {
   createStandaloneToast,
   Avatar,
   Flex,
+  chakra,
+  BoxProps,
 } from "@chakra-ui/react";
 import { deleteNote, loveNote } from "../../../actions/notes";
 import { useDispatch } from "react-redux";
 import moment from "moment";
+import { motion } from "framer-motion";
 
 type AppProps = {
   note: any;
@@ -18,6 +21,9 @@ type AppProps = {
 const Note = ({ note }: AppProps) => {
   const dispatch = useDispatch<any>();
   const user = JSON.parse(localStorage.getItem("profile")!);
+  const MotionAvatar = motion<Omit<any, "transition">>(Avatar);
+  const MotionFlex = motion<Omit<any, "transition">>(Flex);
+  const FramerButton = chakra(motion.button);
 
   const NotLoggedInAlert = () => {
     const toast = createStandaloneToast();
@@ -31,7 +37,7 @@ const Note = ({ note }: AppProps) => {
   };
 
   return (
-    <Flex
+    <MotionFlex
       direction={"row"}
       rounded={"25px"}
       align={"center"}
@@ -42,6 +48,8 @@ const Note = ({ note }: AppProps) => {
       gap={"5px"}
       textAlign={"center"}
       color="black"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 1 }}
     >
       <Flex
         width={"30%"}
@@ -50,11 +58,12 @@ const Note = ({ note }: AppProps) => {
         align={"center"}
         gap={"10px"}
       >
-        <Avatar
+        <MotionAvatar
           bg={"transparent"}
           size={"lg"}
           name={note.avatar}
           src={note.avatar}
+          whileHover={{ scale: 1.2 }}
         />
         <Text fontSize="md">{note.username}</Text>
         {!user?.result ? (
@@ -62,9 +71,17 @@ const Note = ({ note }: AppProps) => {
             <Text fontSize="sm">Love: {note.loveCount.length}</Text>
           </Button>
         ) : (
-          <Button size={"xs"} onClick={() => dispatch(loveNote(note._id))}>
-            <Text fontSize="xs">Love: {note.loveCount.length}</Text>
-          </Button>
+          <FramerButton
+            whileHover={{ scale: 1.4 }}
+            bg={"cyan.300"}
+            padding={"5px"}
+            rounded={"25px"}
+            onClick={() => dispatch(loveNote(note._id))}
+          >
+            <Text fontSize="xs" fontWeight={"bold"}>
+              Love: {note.loveCount.length}
+            </Text>
+          </FramerButton>
         )}
       </Flex>
       <Flex
@@ -95,7 +112,7 @@ const Note = ({ note }: AppProps) => {
           </Button>
         )}
       </Flex>
-    </Flex>
+    </MotionFlex>
   );
 };
 
