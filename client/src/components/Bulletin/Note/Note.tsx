@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import {
   Box,
   Text,
@@ -8,6 +8,7 @@ import {
   Flex,
   chakra,
   BoxProps,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { deleteNote, loveNote } from "../../../actions/notes";
 import { useDispatch } from "react-redux";
@@ -24,6 +25,7 @@ const Note = ({ note }: AppProps) => {
   const MotionAvatar = motion<Omit<any, "transition">>(Avatar);
   const MotionFlex = motion<Omit<any, "transition">>(Flex);
   const FramerButton = chakra(motion.button);
+  const isSmall = useMediaQuery("(min-width: 480px)");
 
   const NotLoggedInAlert = () => {
     const toast = createStandaloneToast();
@@ -42,14 +44,17 @@ const Note = ({ note }: AppProps) => {
       rounded={"25px"}
       align={"center"}
       bg={note.color}
-      w={"500px"}
-      h={"150px"}
+      w={{ base: "350px", md: "500px" }}
+      h={{ base: "300px", md: "150px" }}
       marginBottom={"5px"}
       gap={"5px"}
       textAlign={"center"}
       color="black"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 1 }}
+      initial={{ opacity: 0.3 }}
+      whileInView={isSmall ? { opacity: 1, scale: 1.2 } : { opacity: 1 }}
+      viewport={isSmall ? { amount: "all" } : { amount: "some" }}
     >
       <Flex
         width={"30%"}

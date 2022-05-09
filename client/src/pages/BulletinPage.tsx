@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { Container, Flex, Box } from "@chakra-ui/react";
+import { Container, Flex, Box, Text } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { getNotes } from "../actions/notes";
 import Bulletin from "../components/Bulletin/Bulletin";
@@ -26,6 +26,7 @@ const BulletinPage: FC = () => {
         shadow={"dark-lg"}
         color={"white"}
       >
+        <Text fontSize={"2xl"}>Bulletin</Text>
         <Flex direction={"column"}>
           <Bulletin />
         </Flex>

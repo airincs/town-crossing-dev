@@ -8,7 +8,7 @@ const Home: FC = () => {
   const user = JSON.parse(localStorage.getItem("profile")!);
 
   return (
-    <Flex direction={"column"} align={"center"} mt={"30px"}>
+    <Flex direction={"column"} align={"center"} h={"95vh"}>
       home
     </Flex>
   );

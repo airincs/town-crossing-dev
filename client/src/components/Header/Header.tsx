@@ -1,15 +1,17 @@
 import React, { FC, useState, useEffect } from "react";
-import { Flex, Button, Avatar, Text } from "@chakra-ui/react";
+import { Flex, Button, Avatar, Text, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import decode from "jwt-decode";
+import { motion } from "framer-motion";
 
 const Header: FC = () => {
   const [user, setUser] = useState<any>();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const MotionFlex = motion<Omit<any, "transition">>(Flex);
 
   useEffect(() => {
     const value = localStorage.getItem("profile");
@@ -43,15 +45,37 @@ const Header: FC = () => {
       gap={"10px"}
       shadow={"lg"}
     >
-      <Button h={"90%"} roundedLeft={"25px"} w={"100px"} bg={"cyan.300"}>
-        <Link to="/">Home</Link>
-      </Button>
-      <Button h={"90%"} w={"100px"} bg={"cyan.300"}>
-        <Link to="/bulletin">Bulletin</Link>
-      </Button>
+      <Link to="/">
+        <MotionFlex
+          justify={"center"}
+          align={"center"}
+          height={"40px"}
+          rounded={"5px"}
+          w={"100px"}
+          bg={"cyan.500"}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 1.1 }}
+        >
+          <Text fontWeight={"bold"}>Home</Text>
+        </MotionFlex>
+      </Link>
+      <Link to="/bulletin">
+        <MotionFlex
+          justify={"center"}
+          align={"center"}
+          height={"40px"}
+          rounded={"5px"}
+          w={"100px"}
+          bg={"cyan.300"}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 1.1 }}
+        >
+          <Text fontWeight={"bold"}>Bulletin</Text>
+        </MotionFlex>
+      </Link>
       {user ? (
         <>
-          <Flex direction={"column"} w={"100px"} align={"center"}>
+          <Flex w={"100px"} align={"center"} mr={"30px"} ml={"auto"}>
             <Avatar
               bg={"transparent"}
               size={"md"}
@@ -60,14 +84,36 @@ const Header: FC = () => {
             />
             <Text fontSize={"xs"}>{user.result.username}</Text>
           </Flex>
-          <Button h={"90px"} onClick={logout} bg={"cyan.300"} w={"100px"}>
-            Logout
-          </Button>{" "}
+          <MotionFlex
+            justify={"center"}
+            align={"center"}
+            height={"40px"}
+            rounded={"5px"}
+            w={"100px"}
+            bg={"cyan.500"}
+            onClick={logout}
+            mr={"30px"}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.1 }}
+          >
+            <Text fontWeight={"bold"}>Logout</Text>
+          </MotionFlex>
         </>
       ) : (
-        <Button h={"90%"} roundedRight={"25px"} w={"100px"} bg={"cyan.300"}>
-          <Link to="/login">Login</Link>
-        </Button>
+        <Link to="/login">
+          <MotionFlex
+            justify={"center"}
+            align={"center"}
+            height={"40px"}
+            rounded={"5px"}
+            w={"100px"}
+            bg={"cyan.500"}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.1 }}
+          >
+            <Text fontWeight={"bold"}>Login</Text>
+          </MotionFlex>
+        </Link>
       )}
     </Flex>
   );

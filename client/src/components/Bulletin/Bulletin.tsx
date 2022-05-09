@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import NoteForm from "../NoteForm/NoteForm";
 import Note from "./Note/Note";
-import { motion, LazyMotion, domAnimation, m } from "framer-motion";
 
 const Bulletin: FC = () => {
   const notes = useSelector((state: any) => state.notes);
@@ -24,40 +23,35 @@ const Bulletin: FC = () => {
   }, [notes]);
 
   return (
-    <Flex justify={"space-between"} w={"80vw"}>
+    <Flex
+      direction={"column"}
+      align={"center"}
+      width={{ base: "100vw", md: "80vw" }}
+      bg={"whiteAlpha.300"}
+    >
       <Flex
         direction={"column"}
+        overflowY={"scroll"}
+        width={{ base: "100%", md: "90%" }}
         align={"center"}
-        justify={"space-between"}
-        width={"40vw"}
-        bg={"blackAlpha.400"}
+        maxH={"80vh"}
+        paddingTop={"30px"}
+        paddingBottom={"30px"}
+        marginTop={"5px"}
+        marginBottom={"5px"}
       >
-        <Flex>
-          <FormControl></FormControl>
-        </Flex>
-        <NoteForm />
+        {searchedNotes.map((note: any) => (
+          <Box
+            key={note._id}
+            shadow={"2xl"}
+            paddingTop={{ base: "0px", md: "10px" }}
+            paddingBottom={{ base: "0px", md: "10px" }}
+          >
+            <Note note={note} />
+          </Box>
+        ))}
       </Flex>
-      <Flex
-        direction={"column"}
-        align={"center"}
-        width={"60vw"}
-        bg={"whiteAlpha.300"}
-      >
-        <Text>Bulletin</Text>
-        <Flex
-          direction={"column"}
-          overflowY={"scroll"}
-          width={"90%"}
-          align={"center"}
-          maxH={"80vh"}
-        >
-          {searchedNotes.map((note: any) => (
-            <Box key={note._id} shadow={"2xl"}>
-              <Note note={note} />
-            </Box>
-          ))}
-        </Flex>
-      </Flex>
+      <NoteForm />
     </Flex>
   );
 };
