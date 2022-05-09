@@ -32,12 +32,12 @@ const Header: FC = () => {
       justify={"center"}
       align={"center"}
       gap={"10px"}
-      shadow={"md"}
+      shadow={"lg"}
     >
-      <Button>
+      <Button h={"90%"} roundedLeft={"25px"} w={"100px"} bg={"cyan.300"}>
         <Link to="/">Home</Link>
       </Button>
-      <Button>
+      <Button h={"90%"} w={"100px"} bg={"cyan.300"}>
         <Link to="/bulletin">Bulletin</Link>
       </Button>
       {user ? (
@@ -51,12 +51,12 @@ const Header: FC = () => {
             />
             <Text fontSize={"xs"}>{user.result.username}</Text>
           </Flex>
-          <Button h={"50px"} onClick={logout}>
+          <Button h={"90px"} onClick={logout} bg={"cyan.300"} w={"100px"}>
             Logout
           </Button>{" "}
         </>
       ) : (
-        <Button>
+        <Button h={"90%"} roundedRight={"25px"} w={"100px"} bg={"cyan.300"}>
           <Link to="/login">Login</Link>
         </Button>
       )}

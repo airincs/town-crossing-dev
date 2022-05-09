@@ -32,47 +32,66 @@ const Note = ({ note }: AppProps) => {
 
   return (
     <Flex
-      direction={"column"}
+      direction={"row"}
       rounded={"25px"}
-      justify={"center"}
       align={"center"}
       bg={note.color}
-      w={"100px"}
-      h={"200px"}
+      w={"500px"}
+      h={"150px"}
       marginBottom={"5px"}
+      gap={"5px"}
       textAlign={"center"}
+      color="black"
     >
-      <Avatar
-        bg={"transparent"}
-        size={"md"}
-        name={note.avatar}
-        src={note.avatar}
-      />
-      <Text fontSize="xs">Title: {note.title} </Text>
-      <Text fontSize="xs">Message: {note.message}</Text>
-      <Text fontSize="xs">By: {note.username}</Text>
-      <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
-      {!user?.result ? (
-        <Button size={"xs"} onClick={() => NotLoggedInAlert()}>
-          <Text fontSize="xs">Love: {note.loveCount.length}</Text>
-        </Button>
-      ) : (
-        <Button size={"xs"} onClick={() => dispatch(loveNote(note._id))}>
-          <Text fontSize="xs">Love: {note.loveCount.length}</Text>
-        </Button>
-      )}
-      {(user?.result?.googleId === note?.creator ||
-        user?.result?._id === note?.creator) && (
-        <Button
-          size={"xs"}
-          marginTop={"5px"}
-          onClick={() => {
-            dispatch(deleteNote(note._id));
-          }}
-        >
-          Delete Note!
-        </Button>
-      )}
+      <Flex
+        width={"30%"}
+        justify={"center"}
+        direction={"column"}
+        align={"center"}
+        gap={"10px"}
+      >
+        <Avatar
+          bg={"transparent"}
+          size={"lg"}
+          name={note.avatar}
+          src={note.avatar}
+        />
+        <Text fontSize="md">{note.username}</Text>
+      </Flex>
+      <Flex
+        direction={"column"}
+        align={"flex-start"}
+        justify={"flex-start"}
+        width={"70%"}
+        maxH={"100px"}
+      >
+        <Text fontSize="xl" fontWeight={"600"} height={"30px"}>
+          {note.title}
+        </Text>
+        <Text fontSize="sm">{note.message}</Text>
+        {!user?.result ? (
+          <Button size={"sm"} mt={"5px"} onClick={() => NotLoggedInAlert()}>
+            <Text fontSize="sm">Love: {note.loveCount.length}</Text>
+          </Button>
+        ) : (
+          <Button size={"xs"} onClick={() => dispatch(loveNote(note._id))}>
+            <Text fontSize="xs">Love: {note.loveCount.length}</Text>
+          </Button>
+        )}
+        <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
+        {(user?.result?.googleId === note?.creator ||
+          user?.result?._id === note?.creator) && (
+          <Button
+            size={"xs"}
+            marginTop={"5px"}
+            onClick={() => {
+              dispatch(deleteNote(note._id));
+            }}
+          >
+            Delete Note!
+          </Button>
+        )}
+      </Flex>
     </Flex>
   );
 };

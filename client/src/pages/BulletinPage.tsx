@@ -13,13 +13,18 @@ const BulletinPage: FC = () => {
   }, [dispatch]);
 
   return (
-    <Box>
+    <Box paddingBottom={"1vh"} paddingTop={"1vh"}>
       <Container
         display={"flex"}
-        justifyContent={"space-around"}
-        bg={"blackAlpha.400"}
+        flexDirection={"column"}
+        alignItems={"center"}
+        justifyContent={"center"}
         maxW={{ base: "100vw", md: "80vw" }}
-        minH={"100vh"}
+        minH={"93vh"}
+        bg={"gray.700"}
+        rounded={"25px"}
+        shadow={"dark-lg"}
+        color={"white"}
       >
         <Flex direction={"column"}>
           <Bulletin />

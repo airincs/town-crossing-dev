@@ -10,6 +10,7 @@ import {
   Box,
   FormLabel,
   Heading,
+  Input,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import avatars from "../components/Avatars/avatars";
@@ -55,7 +56,7 @@ const Login: FC = () => {
   const formik = useFormik({
     initialValues: {
       username: "",
-      avatar: "",
+      avatar: avatars[0].image,
       password: "",
       confirmPassword: "",
     },
@@ -67,9 +68,10 @@ const Login: FC = () => {
       password: Yup.string()
         .min(4, "Password must be at least 6 characters long!")
         .required("A Password is required!"),
-      confirmPassword: Yup.string()
-        .oneOf([Yup.ref("password"), null], "Passwords must match!")
-        .required("A confirmed Password is required!"),
+      confirmPassword: Yup.string().oneOf(
+        [Yup.ref("password"), null],
+        "Passwords must match!"
+      ),
     }),
     onSubmit: (values) => {
       if (signUpStatus) {
@@ -104,7 +106,7 @@ const Login: FC = () => {
         bg={"gray.700"}
         padding={"50px"}
         rounded={"25px"}
-        shadow={"2xl"}
+        shadow={"dark-lg"}
         color={"white"}
       >
         <Flex justify={"center"}>
@@ -119,43 +121,52 @@ const Login: FC = () => {
                 justify={"center"}
                 maxW={"80vw"}
               >
-                <FormLabel marginTop={"20px"}>Username:</FormLabel>
-                <input
-                  id="username"
-                  name="username"
-                  onChange={formik.handleChange}
-                  value={formik.values.username}
-                />
-                {formik.touched.username && formik.errors.username ? (
-                  <Heading color={"red.300"} fontSize={"sm"}>
-                    {formik.errors.username}
-                  </Heading>
-                ) : null}
-                <FormLabel marginTop={"20px"}>Password:</FormLabel>
-                <input
-                  id="password"
-                  name="password"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
-                />
-                {formik.touched.password && formik.errors.password ? (
-                  <Heading color={"red.300"} fontSize={"sm"}>
-                    {formik.errors.password}
-                  </Heading>
-                ) : null}
-                <FormLabel marginTop={"20px"}>Confirm Password:</FormLabel>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  onChange={formik.handleChange}
-                  value={formik.values.confirmPassword}
-                />
-                {formik.touched.confirmPassword &&
-                formik.errors.confirmPassword ? (
-                  <Heading color={"red.300"} fontSize={"sm"}>
-                    {formik.errors.confirmPassword}
-                  </Heading>
-                ) : null}
+                <Box>
+                  <FormLabel marginTop={"20px"}>Username:</FormLabel>
+                  <Input
+                    id="username"
+                    name="username"
+                    onChange={formik.handleChange}
+                    value={formik.values.username}
+                    width={"320px"}
+                  />
+                  {formik.touched.username && formik.errors.username ? (
+                    <Heading color={"red.300"} fontSize={"sm"}>
+                      {formik.errors.username}
+                    </Heading>
+                  ) : null}
+                </Box>
+                <Box>
+                  <FormLabel marginTop={"20px"}>Password:</FormLabel>
+                  <Input
+                    id="password"
+                    name="password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    width={"320px"}
+                  />
+                  {formik.touched.password && formik.errors.password ? (
+                    <Heading color={"red.300"} fontSize={"sm"}>
+                      {formik.errors.password}
+                    </Heading>
+                  ) : null}
+                </Box>
+                <Box>
+                  <FormLabel marginTop={"20px"}>Confirm Password:</FormLabel>
+                  <Input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    onChange={formik.handleChange}
+                    value={formik.values.confirmPassword}
+                    width={"320px"}
+                  />
+                  {formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword ? (
+                    <Heading color={"red.300"} fontSize={"sm"}>
+                      {formik.errors.confirmPassword}
+                    </Heading>
+                  ) : null}
+                </Box>
               </Flex>
               <Flex
                 w={"768px"}
@@ -194,7 +205,7 @@ const Login: FC = () => {
           ) : (
             <Flex direction={"column"}>
               <FormLabel marginTop={"20px"}>Username:</FormLabel>
-              <input
+              <Input
                 id="username"
                 name="username"
                 onChange={formik.handleChange}
@@ -206,7 +217,7 @@ const Login: FC = () => {
                 </Heading>
               ) : null}
               <FormLabel marginTop={"20px"}>Password:</FormLabel>
-              <input
+              <Input
                 id="password"
                 name="password"
                 onChange={formik.handleChange}

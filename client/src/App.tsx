@@ -8,7 +8,10 @@ import { Box } from "@chakra-ui/react";
 
 const App: FC = () => {
   return (
-    <Box bgGradient={"linear(to-br, gray.900, gray.700)"}>
+    <Box
+      bgGradient={"linear(to-br, green.300, green.200)"}
+      letterSpacing={"0.05em"}
+    >
       <Router>
         <Header />
         <Routes>
