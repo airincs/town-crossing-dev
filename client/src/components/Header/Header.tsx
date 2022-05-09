@@ -3,6 +3,7 @@ import { Flex, Button, Avatar, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
+import decode from "jwt-decode";
 
 const Header: FC = () => {
   const [user, setUser] = useState<any>();
@@ -23,6 +24,14 @@ const Header: FC = () => {
     navigate("/");
     setUser(null);
   };
+
+  useEffect(() => {
+    const token = user?.token;
+    if (token) {
+      const decodedToken: any = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
+  });
 
   return (
     <Flex
