@@ -55,6 +55,7 @@ const Header: FC = () => {
           bg={"cyan.500"}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 1.1 }}
+          ml={"30px"}
         >
           <Text fontWeight={"bold"}>Home</Text>
         </MotionFlex>
@@ -89,14 +90,22 @@ const Header: FC = () => {
               <Text fontWeight={"bold"}>My Notes</Text>
             </MotionFlex>
           </Link>
-          <Flex w={"100px"} align={"center"} mr={"30px"} ml={"auto"}>
+          <Flex
+            w={"100px"}
+            align={"center"}
+            mr={"30px"}
+            ml={"auto"}
+            gap={"15px"}
+          >
             <Avatar
               bg={"transparent"}
               size={"md"}
               name={user.result.avatar}
               src={user.result.avatar}
             />
-            <Text fontSize={"xs"}>{user.result.username}</Text>
+            <Text fontSize={"2xl"} fontWeight={"300"} color={"cyan.300"}>
+              {user.result.username}
+            </Text>
           </Flex>
           <MotionFlex
             justify={"center"}

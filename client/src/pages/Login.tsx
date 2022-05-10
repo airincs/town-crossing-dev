@@ -212,7 +212,7 @@ const Login: FC = () => {
                 value={formik.values.username}
               />
               {formik.touched.username && formik.errors.username ? (
-                <Heading color={"blackAlpha.900"} fontSize={"sm"}>
+                <Heading color={"red.300"} fontSize={"sm"} w={"320px"}>
                   {formik.errors.username}
                 </Heading>
               ) : null}
@@ -224,7 +224,7 @@ const Login: FC = () => {
                 value={formik.values.password}
               />
               {formik.touched.password && formik.errors.password ? (
-                <Heading color={"blackAlpha.900"} fontSize={"sm"}>
+                <Heading color={"red.300"} fontSize={"sm"} w={"320px"}>
                   {formik.errors.password}
                 </Heading>
               ) : null}

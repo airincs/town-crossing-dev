@@ -30,8 +30,7 @@ const Note = ({ note }: AppProps) => {
   const NotLoggedInAlert = () => {
     const toast = createStandaloneToast();
     return toast({
-      title: "Can not love!",
-      description: "Must log in to love a post!",
+      title: "Must log in to love a post!",
       status: "error",
       duration: 3000,
       isClosable: true,
@@ -72,9 +71,17 @@ const Note = ({ note }: AppProps) => {
         />
         <Text fontSize="md">{note.username}</Text>
         {!user?.result ? (
-          <Button size={"sm"} mt={"5px"} onClick={() => NotLoggedInAlert()}>
-            <Text fontSize="sm">Love: {note.loveCount.length}</Text>
-          </Button>
+          <FramerButton
+            whileHover={{ scale: 1.4 }}
+            bg={"cyan.300"}
+            padding={"5px"}
+            rounded={"25px"}
+            onClick={() => dispatch(NotLoggedInAlert)}
+          >
+            <Text fontSize="xs" fontWeight={"bold"}>
+              Love: {note.loveCount.length}
+            </Text>
+          </FramerButton>
         ) : (
           <FramerButton
             whileHover={{ scale: 1.4 }}

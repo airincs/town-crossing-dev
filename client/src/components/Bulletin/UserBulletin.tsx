@@ -37,7 +37,6 @@ const UserBulletin: FC = () => {
 
   const handleSearch = () => {
     const newArray = filterSearch(searchedNotes, `${user.result.username}`);
-    console.log(user);
     setSearchedNotes(newArray);
     return;
   };
