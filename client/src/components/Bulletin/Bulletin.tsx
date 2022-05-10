@@ -22,15 +22,14 @@ const Bulletin: FC = () => {
     setSearchedNotes(notes);
   }, [notes]);
 
-  const filter = (array: Array<any>, string: string) => {
-    return array.filter((o) =>
-      Object.keys(o).some((k) =>
-        o[k].toLowerCase().includes(string.toLowerCase())
-      )
-    );
+  const filterSearch = (array: Array<any>, string: string) => {
+    return array.filter((o) => o.message.includes(string));
   };
 
   const handleSearch = () => {
+    const newArray = filterSearch(searchedNotes, "i");
+    console.log(newArray);
+    setSearchedNotes(newArray);
     return;
   };
 
@@ -40,6 +39,7 @@ const Bulletin: FC = () => {
       align={"center"}
       width={{ base: "100vw", md: "80vw" }}
     >
+      <Button onClick={handleSearch}>search</Button>
       <Flex
         direction={"column"}
         overflowY={"scroll"}
