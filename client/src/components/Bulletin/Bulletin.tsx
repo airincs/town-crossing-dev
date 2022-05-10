@@ -27,7 +27,7 @@ const Bulletin: FC = () => {
       direction={"column"}
       align={"center"}
       width={{ base: "100vw", md: "80vw" }}
-      bg={"whiteAlpha.300"}
+      //bg={"whiteAlpha.300"}
     >
       <Flex
         direction={"column"}
@@ -41,12 +41,7 @@ const Bulletin: FC = () => {
         marginBottom={"5px"}
       >
         {searchedNotes.map((note: any) => (
-          <Box
-            key={note._id}
-            shadow={"2xl"}
-            paddingTop={{ base: "0px", md: "10px" }}
-            paddingBottom={{ base: "0px", md: "10px" }}
-          >
+          <Box key={note._id} shadow={"2xl"}>
             <Note note={note} />
           </Box>
         ))}

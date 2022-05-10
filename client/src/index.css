@@ -5,3 +5,24 @@ body, html {
   width: 100vw;
   max-width: 100%;
 }
+
+/* ===== Scrollbar CSS ===== */
+/* Code skeleton found from https://codepen.io/stephenpaton-tech/full/JjRvGmY */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #4c4b4d #000000;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #4c4b4d;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #000000;
+  }

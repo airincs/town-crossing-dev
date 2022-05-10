@@ -25,7 +25,7 @@ const Note = ({ note }: AppProps) => {
   const MotionAvatar = motion<Omit<any, "transition">>(Avatar);
   const MotionFlex = motion<Omit<any, "transition">>(Flex);
   const FramerButton = chakra(motion.button);
-  const isSmall = useMediaQuery("(min-width: 480px)");
+  const [isSmall] = useMediaQuery("(min-width: 480px)");
 
   const NotLoggedInAlert = () => {
     const toast = createStandaloneToast();
@@ -53,8 +53,8 @@ const Note = ({ note }: AppProps) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 1 }}
       initial={{ opacity: 0.3 }}
-      whileInView={isSmall ? { opacity: 1, scale: 1.2 } : { opacity: 1 }}
-      viewport={isSmall ? { amount: "all" } : { amount: "some" }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ amount: "some" }}
     >
       <Flex
         width={"30%"}
