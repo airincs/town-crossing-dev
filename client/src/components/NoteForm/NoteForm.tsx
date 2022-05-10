@@ -78,7 +78,16 @@ const NoteForm = () => {
 
   return (
     <>
-      <Button color={"black"} bg={"cyan.300"} onClick={onOpen} w={"50%"}>
+      <Button
+        color={"black"}
+        bg={"cyan.500"}
+        onClick={onOpen}
+        w={"50%"}
+        position="absolute"
+        bottom={4}
+        roundedTop={"0px"}
+        roundedBottom={"5px"}
+      >
         Post a Note!
       </Button>
       <Drawer

@@ -38,8 +38,10 @@ const Bulletin: FC = () => {
       direction={"column"}
       align={"center"}
       width={{ base: "100vw", md: "80vw" }}
+      paddingBottom={"50px"}
+      position={"relative"}
     >
-      <Button onClick={handleSearch}>search</Button>
+      <NoteForm />
       <Flex
         direction={"column"}
         overflowY={"scroll"}
@@ -48,16 +50,25 @@ const Bulletin: FC = () => {
         maxH={"80vh"}
         paddingTop={"30px"}
         paddingBottom={"30px"}
-        marginTop={"5px"}
-        marginBottom={"5px"}
+        marginTop={"10px"}
+        marginBottom={"10px"}
       >
         {searchedNotes.map((note: any) => (
-          <Box key={note._id} shadow={"2xl"}>
+          <Flex key={note._id} shadow={"2xl"} shrink={1}>
             <Note note={note} />
-          </Box>
+          </Flex>
         ))}
       </Flex>
-      <NoteForm />
+      <Button
+        color={"black"}
+        bg={"cyan.300"}
+        w={"50%"}
+        onClick={handleSearch}
+        roundedTop={"5px"}
+        roundedBottom={"0px"}
+      >
+        Search for a Message!
+      </Button>
     </Flex>
   );
 };

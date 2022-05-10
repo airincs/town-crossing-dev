@@ -13,20 +13,23 @@ const BulletinPage: FC = () => {
   }, [dispatch]);
 
   return (
-    <Box paddingBottom={"1vh"} paddingTop={"1vh"}>
+    <Box paddingBottom={"1vh"} paddingTop={"0.5vh"}>
       <Container
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
         justifyContent={"center"}
         maxW={{ base: "100vw", md: "80vw" }}
-        minH={"93vh"}
+        minH={"93.5vh"}
+        maxH={"93.5vh"}
         bg={"gray.700"}
         rounded={"25px"}
         shadow={"dark-lg"}
         color={"white"}
       >
-        <Text fontSize={"2xl"}>Bulletin</Text>
+        <Text fontSize={"xl"} mt={"5px"}>
+          Bulletin
+        </Text>
         <Flex direction={"column"}>
           <Bulletin />
         </Flex>
