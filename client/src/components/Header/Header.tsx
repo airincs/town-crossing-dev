@@ -75,6 +75,20 @@ const Header: FC = () => {
       </Link>
       {user ? (
         <>
+          <Link to="/usernotes">
+            <MotionFlex
+              justify={"center"}
+              align={"center"}
+              height={"40px"}
+              rounded={"5px"}
+              w={"100px"}
+              bg={"cyan.300"}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 1.1 }}
+            >
+              <Text fontWeight={"bold"}>My Notes</Text>
+            </MotionFlex>
+          </Link>
           <Flex w={"100px"} align={"center"} mr={"30px"} ml={"auto"}>
             <Avatar
               bg={"transparent"}
