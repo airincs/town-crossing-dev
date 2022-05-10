@@ -3,7 +3,7 @@ import { FETCH_ALL_NOTES, CREATE_NOTE, DELETE_NOTE, LOVE_NOTE } from '../constan
 export default (notes = [], action: any) => {
   switch (action.type) {
     case FETCH_ALL_NOTES:
-      return action.payload;
+      return action.payload.reverse();
     case CREATE_NOTE:
       return [action.payload, ...notes];
     case DELETE_NOTE:

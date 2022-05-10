@@ -22,12 +22,23 @@ const Bulletin: FC = () => {
     setSearchedNotes(notes);
   }, [notes]);
 
+  const filter = (array: Array<any>, string: string) => {
+    return array.filter((o) =>
+      Object.keys(o).some((k) =>
+        o[k].toLowerCase().includes(string.toLowerCase())
+      )
+    );
+  };
+
+  const handleSearch = () => {
+    return;
+  };
+
   return (
     <Flex
       direction={"column"}
       align={"center"}
       width={{ base: "100vw", md: "80vw" }}
-      //bg={"whiteAlpha.300"}
     >
       <Flex
         direction={"column"}
