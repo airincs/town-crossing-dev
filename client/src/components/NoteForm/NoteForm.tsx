@@ -69,7 +69,11 @@ const NoteForm = () => {
   });
 
   if (!user?.result?.username) {
-    return <Box>Please Sign In to Post a Note</Box>;
+    return (
+      <Box bottom={4} position={"absolute"}>
+        Please Sign In to Post a Note
+      </Box>
+    );
   }
 
   const handleSubmit = () => {
