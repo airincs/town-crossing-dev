@@ -6,6 +6,8 @@ import UserBulletin from "../components/Bulletin/UserBulletin";
 
 const UserNotesPage: FC = () => {
   const dispatch = useDispatch<any>();
+  const user = JSON.parse(localStorage.getItem("profile")!);
+  const username = `${user.result.username}`;
 
   useEffect(() => {
     dispatch(getNotes());
@@ -27,7 +29,7 @@ const UserNotesPage: FC = () => {
       >
         <Text fontSize={"2xl"}>My Notes</Text>
         <Flex direction={"column"}>
-          <UserBulletin />
+          <UserBulletin username={username} />
         </Flex>
       </Container>
     </Box>

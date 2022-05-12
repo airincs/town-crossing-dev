@@ -62,11 +62,11 @@ const Login: FC = () => {
     },
     validationSchema: Yup.object().shape({
       username: Yup.string()
-        .min(4, "Username must be at least 4 characters long!")
+        .min(5, "Username must be at least 5 characters long!")
         .required("Username is required!"),
       avatar: Yup.string().required("An avatar selection is required!"),
       password: Yup.string()
-        .min(4, "Password must be at least 6 characters long!")
+        .min(5, "Password must be at least 5 characters long!")
         .required("A Password is required!"),
       confirmPassword: Yup.string().oneOf(
         [Yup.ref("password"), null],

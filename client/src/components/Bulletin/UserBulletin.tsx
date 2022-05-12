@@ -13,10 +13,17 @@ import {
 import NoteForm from "../NoteForm/NoteForm";
 import Note from "./Note/Note";
 
-const UserBulletin: FC = () => {
-  const notes = useSelector((state: any) => state.notes);
+type AppProps = {
+  username: string;
+};
+
+const UserBulletin = ({ username }: AppProps) => {
+  const notes = useSelector((state: any) =>
+    state.notes.filter((note: any) => note.username.includes(username))
+  );
   const [user, setUser] = useState<any>();
   const [searchedNotes, setSearchedNotes] = useState<any>([]);
+  const [searchString, setSearchString] = useState<any>("airin");
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
@@ -27,27 +34,12 @@ const UserBulletin: FC = () => {
     }
   }, []);
 
-  useEffect(() => {
-    setSearchedNotes(notes);
-  }, [notes]);
-
-  const filterSearch = (array: Array<any>, string: string) => {
-    return array.filter((o) => o.username.includes(string));
-  };
-
-  const handleSearch = () => {
-    const newArray = filterSearch(searchedNotes, `${user.result.username}`);
-    setSearchedNotes(newArray);
-    return;
-  };
-
   return (
     <Flex
       direction={"column"}
       align={"center"}
       width={{ base: "100vw", md: "80vw" }}
     >
-      <Button onClick={handleSearch}>search</Button>
       <Flex
         direction={"column"}
         overflowY={"scroll"}
@@ -59,7 +51,7 @@ const UserBulletin: FC = () => {
         marginTop={"5px"}
         marginBottom={"5px"}
       >
-        {searchedNotes.map((note: any) => (
+        {notes.map((note: any) => (
           <Box key={note._id} shadow={"2xl"}>
             <Note note={note} />
           </Box>
