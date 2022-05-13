@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Header from "./components/Header/Header";
 import UserNotesPage from "./pages/UserNotesPage";
+import Weather from "./pages/Weather";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
@@ -20,6 +21,7 @@ const App: FC = () => {
           <Route path="/bulletin" element={<BulletinPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/usernotes" element={<UserNotesPage />} />
+          <Route path="/weather" element={<Weather />} />
         </Routes>
       </Router>
     </Box>

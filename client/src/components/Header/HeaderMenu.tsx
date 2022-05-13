@@ -63,7 +63,7 @@ const HeaderMenu = () => {
               <MenuItem>My Notes</MenuItem>
             </Link>
           ) : null}
-          <Link to="/login">
+          <Link to="/weather">
             <MenuItem>Weather</MenuItem>
           </Link>
           <Link to="/">
