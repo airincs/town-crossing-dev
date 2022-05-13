@@ -62,7 +62,8 @@ const Login: FC = () => {
     },
     validationSchema: Yup.object().shape({
       username: Yup.string()
-        .min(5, "Username must be at least 5 characters long!")
+        .min(4, "Username must be at least 4 characters long!")
+        .max(9, "Username must not exceed 9 characters!")
         .required("Username is required!"),
       avatar: Yup.string().required("An avatar selection is required!"),
       password: Yup.string()
@@ -129,6 +130,7 @@ const Login: FC = () => {
                     onChange={formik.handleChange}
                     value={formik.values.username}
                     width={"320px"}
+                    autoComplete={"off"}
                   />
                   {formik.touched.username && formik.errors.username ? (
                     <Heading color={"red.300"} fontSize={"sm"}>
@@ -144,6 +146,7 @@ const Login: FC = () => {
                     onChange={formik.handleChange}
                     value={formik.values.password}
                     width={"320px"}
+                    autoComplete={"off"}
                   />
                   {formik.touched.password && formik.errors.password ? (
                     <Heading color={"red.300"} fontSize={"sm"}>
@@ -159,6 +162,7 @@ const Login: FC = () => {
                     onChange={formik.handleChange}
                     value={formik.values.confirmPassword}
                     width={"320px"}
+                    autoComplete={"off"}
                   />
                   {formik.touched.confirmPassword &&
                   formik.errors.confirmPassword ? (
@@ -210,6 +214,7 @@ const Login: FC = () => {
                 name="username"
                 onChange={formik.handleChange}
                 value={formik.values.username}
+                autoComplete={"off"}
               />
               {formik.touched.username && formik.errors.username ? (
                 <Heading color={"red.300"} fontSize={"sm"} w={"320px"}>
@@ -222,6 +227,7 @@ const Login: FC = () => {
                 name="password"
                 onChange={formik.handleChange}
                 value={formik.values.password}
+                autoComplete={"off"}
               />
               {formik.touched.password && formik.errors.password ? (
                 <Heading color={"red.300"} fontSize={"sm"} w={"320px"}>

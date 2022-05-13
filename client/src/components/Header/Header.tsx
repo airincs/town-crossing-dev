@@ -1,13 +1,15 @@
 import React, { FC, useState, useEffect } from "react";
-import { Flex, Button, Avatar, Text, Box } from "@chakra-ui/react";
+import { Flex, Button, Avatar, Text, useMediaQuery } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import decode from "jwt-decode";
 import { motion } from "framer-motion";
+import HeaderMenu from "./HeaderMenu";
 
 const Header: FC = () => {
   const [user, setUser] = useState<any>();
+  const [isLargerThan768] = useMediaQuery("(min-width:768px)");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,6 +27,7 @@ const Header: FC = () => {
     dispatch({ type: "LOGOUT" });
     navigate("/");
     setUser(null);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -38,105 +41,118 @@ const Header: FC = () => {
   return (
     <Flex
       maxW={"100vw"}
-      h={"5vh"}
+      minH={"5vh"}
       bg={"gray.700"}
-      justify={"center"}
-      align={"center"}
-      gap={"10px"}
+      gap={"20px"}
       shadow={"lg"}
+      shrink={0}
     >
-      <Link to="/">
-        <MotionFlex
-          justify={"center"}
-          align={"center"}
-          height={"40px"}
-          rounded={"5px"}
-          w={"100px"}
-          bg={"cyan.500"}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 1.1 }}
-          ml={"30px"}
-        >
-          <Text fontWeight={"bold"}>Home</Text>
-        </MotionFlex>
-      </Link>
-      <Link to="/bulletin">
-        <MotionFlex
-          justify={"center"}
-          align={"center"}
-          height={"40px"}
-          rounded={"5px"}
-          w={"100px"}
-          bg={"cyan.300"}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 1.1 }}
-        >
-          <Text fontWeight={"bold"}>Bulletin</Text>
-        </MotionFlex>
-      </Link>
-      {user ? (
-        <>
-          <Link to="/usernotes">
-            <MotionFlex
-              justify={"center"}
-              align={"center"}
-              height={"40px"}
-              rounded={"5px"}
-              w={"100px"}
-              bg={"cyan.300"}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 1.1 }}
-            >
-              <Text fontWeight={"bold"}>My Notes</Text>
-            </MotionFlex>
-          </Link>
-          <Flex
-            w={"100px"}
-            align={"center"}
-            mr={"30px"}
-            ml={"auto"}
-            gap={"15px"}
-          >
-            <Avatar
-              bg={"transparent"}
-              size={"md"}
-              name={user.result.avatar}
-              src={user.result.avatar}
-            />
-            <Text fontSize={"2xl"} fontWeight={"300"} color={"cyan.300"}>
-              {user.result.username}
-            </Text>
+      {isLargerThan768 ? (
+        <Flex justify={"space-between"} align={"center"} w={"100%"}>
+          <Flex gap={"20px"} ml={"50px"}>
+            <Link to="/">
+              <MotionFlex
+                justify={"center"}
+                align={"center"}
+                height={"40px"}
+                rounded={"5px"}
+                w={"100px"}
+                bg={"cyan.500"}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                <Text fontWeight={"bold"}>Home</Text>
+              </MotionFlex>
+            </Link>
+            <Link to="/bulletin">
+              <MotionFlex
+                justify={"center"}
+                align={"center"}
+                height={"40px"}
+                rounded={"5px"}
+                w={"100px"}
+                bg={"cyan.300"}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                <Text fontWeight={"bold"}>Bulletin</Text>
+              </MotionFlex>
+            </Link>
           </Flex>
-          <MotionFlex
-            justify={"center"}
-            align={"center"}
-            height={"40px"}
-            rounded={"5px"}
-            w={"100px"}
-            bg={"cyan.500"}
-            onClick={logout}
-            mr={"30px"}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 1.1 }}
-          >
-            <Text fontWeight={"bold"}>Logout</Text>
-          </MotionFlex>
-        </>
+          {user ? (
+            <Flex align={"center"} gap={"20px"} mr={"50px"}>
+              <MotionFlex
+                justify={"center"}
+                align={"center"}
+                height={"40px"}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                <Avatar
+                  bg={"transparent"}
+                  size={"md"}
+                  name={user.result.avatar}
+                  src={user.result.avatar}
+                />
+                <Text fontSize={"2xl"} fontWeight={"300"} color={"cyan.300"}>
+                  {user.result.username}
+                </Text>
+              </MotionFlex>
+              <Link to="/usernotes">
+                <MotionFlex
+                  justify={"center"}
+                  align={"center"}
+                  height={"40px"}
+                  rounded={"5px"}
+                  w={"100px"}
+                  bg={"cyan.300"}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 1.1 }}
+                >
+                  <Text fontWeight={"bold"}>My Notes</Text>
+                </MotionFlex>
+              </Link>
+              <MotionFlex
+                justify={"center"}
+                align={"center"}
+                height={"40px"}
+                rounded={"5px"}
+                w={"100px"}
+                bg={"cyan.500"}
+                onClick={logout}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                <Text fontWeight={"bold"}>Logout</Text>
+              </MotionFlex>
+            </Flex>
+          ) : (
+            <Link to="/login">
+              <MotionFlex
+                justify={"center"}
+                align={"center"}
+                height={"40px"}
+                rounded={"5px"}
+                w={"100px"}
+                bg={"cyan.500"}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+                mr={"50px"}
+              >
+                <Text fontWeight={"bold"}>Login</Text>
+              </MotionFlex>
+            </Link>
+          )}
+        </Flex>
       ) : (
-        <Link to="/login">
-          <MotionFlex
-            justify={"center"}
-            align={"center"}
-            height={"40px"}
-            rounded={"5px"}
-            w={"100px"}
-            bg={"cyan.500"}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 1.1 }}
-          >
-            <Text fontWeight={"bold"}>Login</Text>
-          </MotionFlex>
-        </Link>
+        <Flex justify={"space-between"} align={"center"} w={"100%"} h={"5vh"}>
+          <Flex ml={"10px"}>
+            <Text color={"white"}>Town Crossing</Text>
+          </Flex>
+          <Flex mr={"10px"}>
+            <HeaderMenu />
+          </Flex>
+        </Flex>
       )}
     </Flex>
   );

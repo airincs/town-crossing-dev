@@ -122,6 +122,7 @@ const NoteForm = () => {
                     name="title"
                     onChange={formik.handleChange}
                     value={formik.values.title}
+                    autoComplete={"off"}
                   />
                 </Flex>
                 <Flex align={"center"}>
@@ -133,6 +134,7 @@ const NoteForm = () => {
                     name="message"
                     onChange={formik.handleChange}
                     value={formik.values.message}
+                    autoComplete={"off"}
                   />
                 </Flex>
                 <Flex justify={"center"}>

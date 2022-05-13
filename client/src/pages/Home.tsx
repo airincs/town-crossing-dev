@@ -1,12 +1,18 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Flex, Container, Box, Text, Button } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Note from "../components/Bulletin/Note/Note";
 
 const Home: FC = () => {
-  const notes = useSelector((state: any) => state.notes);
-  const user = JSON.parse(localStorage.getItem("profile")!);
+  const [user, setUser] = useState<any>();
+  useEffect(() => {
+    const value = localStorage.getItem("profile");
+    if (typeof value === "string") {
+      const parse = JSON.parse(value);
+      setUser(parse);
+    }
+  }, []);
 
   return (
     <Flex direction={"column"} align={"center"} h={"95vh"}>
@@ -51,16 +57,18 @@ const Home: FC = () => {
                 Bulletin
               </Button>
             </Link>
-            <Link to="/login">
-              <Button
-                bg={"cyan.400"}
-                w={{ base: "50vw", md: "30vw" }}
-                color={"black"}
-                mt={"8px"}
-              >
-                Login
-              </Button>
-            </Link>
+            {!user ? (
+              <Link to="/login">
+                <Button
+                  bg={"cyan.400"}
+                  w={{ base: "50vw", md: "30vw" }}
+                  color={"black"}
+                  mt={"8px"}
+                >
+                  Login
+                </Button>
+              </Link>
+            ) : null}
             <Link to="/">
               <Button
                 bg={"cyan.400"}

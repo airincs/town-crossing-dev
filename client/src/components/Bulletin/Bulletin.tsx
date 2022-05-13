@@ -138,6 +138,7 @@ const Bulletin: FC = () => {
                     name="string"
                     onChange={formik.handleChange}
                     value={formik.values.string}
+                    autoComplete={"off"}
                   />
                 </Flex>
                 <Button type="submit">Submit</Button>
