@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import { Flex, Container, Box, Text, Button } from "@chakra-ui/react";
+import { Flex, Container, Box, Text, Button, Spinner } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Note from "../components/Bulletin/Note/Note";
@@ -53,9 +53,9 @@ const Home: FC = () => {
             </Text>
             <Text>Welcome!</Text>
           </Flex>
-          <Flex h={"40vh"} w={"40vw"}>
+          <Box h={"40vh"} w={"40vw"}>
             <ReactThreeFiber />
-          </Flex>
+          </Box>
           <Flex flexDirection={"column"} justify={"center"} align={"center"}>
             <Link to="/bulletin">
               <Button
