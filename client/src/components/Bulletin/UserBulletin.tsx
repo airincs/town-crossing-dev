@@ -1,15 +1,6 @@
-import React, { FC, useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  Flex,
-  Text,
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Input,
-} from "@chakra-ui/react";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Flex, Box } from "@chakra-ui/react";
 import NoteForm from "../NoteForm/NoteForm";
 import Note from "./Note/Note";
 
@@ -21,18 +12,6 @@ const UserBulletin = ({ username }: AppProps) => {
   const notes = useSelector((state: any) =>
     state.notes.filter((note: any) => note.username.includes(username))
   );
-  const [user, setUser] = useState<any>();
-  const [searchedNotes, setSearchedNotes] = useState<any>([]);
-  const [searchString, setSearchString] = useState<any>("airin");
-  const dispatch = useDispatch<any>();
-
-  useEffect(() => {
-    const value = localStorage.getItem("profile");
-    if (typeof value === "string") {
-      const parse = JSON.parse(value);
-      setUser(parse);
-    }
-  }, []);
 
   return (
     <Flex
