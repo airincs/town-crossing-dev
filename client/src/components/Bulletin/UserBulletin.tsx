@@ -24,7 +24,7 @@ const UserBulletin = ({ username }: AppProps) => {
         overflowY={"scroll"}
         width={{ base: "100%", md: "90%" }}
         align={"center"}
-        maxH={"80vh"}
+        maxH={"75vh"}
         paddingTop={"30px"}
         paddingBottom={"30px"}
         marginTop={"5px"}

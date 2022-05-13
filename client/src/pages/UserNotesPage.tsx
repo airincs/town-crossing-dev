@@ -14,7 +14,10 @@ const UserNotesPage: FC = () => {
   }, [dispatch]);
 
   return (
-    <Box paddingBottom={"1vh"} paddingTop={"1vh"}>
+    <Box
+      paddingBottom={{ base: "0vh", md: "1vh" }}
+      paddingTop={{ base: "0vh", md: "1vh" }}
+    >
       <Container
         display={"flex"}
         flexDirection={"column"}

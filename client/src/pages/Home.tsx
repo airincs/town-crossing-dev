@@ -3,6 +3,7 @@ import { Flex, Container, Box, Text, Button } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Note from "../components/Bulletin/Note/Note";
+import ReactThreeFiber from "../components/Home/ReactThreeFiber";
 
 const Home: FC = () => {
   const [user, setUser] = useState<any>();
@@ -40,6 +41,7 @@ const Home: FC = () => {
           height={"80vh"}
           width={{ base: "80vw", md: "60vw" }}
           justify={"space-between"}
+          align={"center"}
         >
           <Flex justify={"center"} flexDirection={"column"} align={"center"}>
             <Text
@@ -51,8 +53,8 @@ const Home: FC = () => {
             </Text>
             <Text>Welcome!</Text>
           </Flex>
-          <Flex flexDirection={"column"} justify={"center"} align={"center"}>
-            Content
+          <Flex h={"40vh"} w={"40vw"}>
+            <ReactThreeFiber />
           </Flex>
           <Flex flexDirection={"column"} justify={"center"} align={"center"}>
             <Link to="/bulletin">
@@ -77,7 +79,7 @@ const Home: FC = () => {
                 </Button>
               </Link>
             ) : null}
-            <Link to="/">
+            <Link to="/weather">
               <Button
                 bg={"cyan.400"}
                 w={{ base: "50vw", md: "30vw" }}

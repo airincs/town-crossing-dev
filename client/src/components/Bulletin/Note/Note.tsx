@@ -101,28 +101,36 @@ const Note = ({ note }: AppProps) => {
         align={"flex-start"}
         justify={"flex-start"}
         width={"70%"}
-        maxH={"100px"}
+        h={{ base: "250px", md: "100px" }}
       >
-        <Flex direction={"column"}>
+        <Flex
+          direction={"column"}
+          justify={"space-between"}
+          h={"100%"}
+          w={"100%"}
+        >
           <Text fontSize="xl" fontWeight={"600"} height={"30px"}>
             {note.title}
           </Text>
           <Text fontSize="sm">{note.message}</Text>
-
           <Text fontSize="xs">{moment(note.timeCreated).fromNow()}</Text>
+          {user?.result?._id === note?.creator && (
+            <FramerButton
+              whileHover={{ scale: 1.1 }}
+              bg={"cyan.300"}
+              padding={"5px"}
+              rounded={"25px"}
+              width={"95%"}
+              onClick={() => {
+                dispatch(deleteNote(note._id));
+              }}
+            >
+              <Text fontSize="xs" fontWeight={"bold"}>
+                Delete Note!
+              </Text>
+            </FramerButton>
+          )}
         </Flex>
-        {(user?.result?.googleId === note?.creator ||
-          user?.result?._id === note?.creator) && (
-          <Button
-            size={"xs"}
-            marginTop={"5px"}
-            onClick={() => {
-              dispatch(deleteNote(note._id));
-            }}
-          >
-            Delete Note!
-          </Button>
-        )}
       </Flex>
     </MotionFlex>
   );

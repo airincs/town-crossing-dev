@@ -15,9 +15,12 @@ import {
   FormLabel,
   Input,
   Text,
+  Heading,
+  createStandaloneToast,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { createNote } from "../../actions/notes";
+import * as Yup from "yup";
 
 const NoteForm = () => {
   const dispatch = useDispatch<any>();
@@ -58,6 +61,14 @@ const NoteForm = () => {
       message: "",
       color: "red.100",
     },
+    validationSchema: Yup.object().shape({
+      title: Yup.string()
+        .max(20, "Title must not exceed 20 characters!")
+        .required("Title is required!"),
+      message: Yup.string()
+        .max(80, "Message must be at most 80 characters long!")
+        .required("A Message is required!"),
+    }),
     onSubmit: (values) => {
       setNoteData({
         ...noteData,
@@ -68,6 +79,26 @@ const NoteForm = () => {
     },
   });
 
+  const invalidTitleAlert = () => {
+    const toast = createStandaloneToast();
+    return toast({
+      title: `${formik.errors.title}`,
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+
+  const invalidMessageAlert = () => {
+    const toast = createStandaloneToast();
+    return toast({
+      title: `${formik.errors.message}`,
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+
   if (!user?.result?.username) {
     return (
       <Box bottom={4} position={"absolute"}>
@@ -77,6 +108,8 @@ const NoteForm = () => {
   }
 
   const handleSubmit = () => {
+    if (formik.touched.title && formik.errors.title) invalidTitleAlert();
+    if (formik.touched.message && formik.errors.message) invalidMessageAlert();
     onClose();
   };
 
@@ -117,26 +150,32 @@ const NoteForm = () => {
                   <FormLabel>
                     <Text fontWeight={"600"}>Title:</Text>
                   </FormLabel>
-                  <Input
-                    ref={firstField}
-                    id="title"
-                    name="title"
-                    onChange={formik.handleChange}
-                    value={formik.values.title}
-                    autoComplete={"off"}
-                  />
+                  <Flex>
+                    <Input
+                      ref={firstField}
+                      id="title"
+                      name="title"
+                      onChange={formik.handleChange}
+                      value={formik.values.title}
+                      autoComplete={"off"}
+                    />
+                    <Text fontSize={"xs"}>Max: 20 Characters</Text>
+                  </Flex>
                 </Flex>
                 <Flex align={"center"}>
                   <FormLabel>
                     <Text fontWeight={"600"}>Message:</Text>
                   </FormLabel>
-                  <Input
-                    id="message"
-                    name="message"
-                    onChange={formik.handleChange}
-                    value={formik.values.message}
-                    autoComplete={"off"}
-                  />
+                  <Flex>
+                    <Input
+                      id="message"
+                      name="message"
+                      onChange={formik.handleChange}
+                      value={formik.values.message}
+                      autoComplete={"off"}
+                    />
+                    <Text fontSize={"xs"}>Max: 80 Characters</Text>
+                  </Flex>
                 </Flex>
                 <Flex justify={"center"}>
                   <RadioGroup>

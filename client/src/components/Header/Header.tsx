@@ -78,6 +78,20 @@ const Header: FC = () => {
                 <Text fontWeight={"bold"}>Bulletin</Text>
               </MotionFlex>
             </Link>
+            <Link to="/weather">
+              <MotionFlex
+                justify={"center"}
+                align={"center"}
+                height={"40px"}
+                rounded={"5px"}
+                w={"100px"}
+                bg={"cyan.300"}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+              >
+                <Text fontWeight={"bold"}>Weather</Text>
+              </MotionFlex>
+            </Link>
           </Flex>
           {user ? (
             <Flex align={"center"} gap={"20px"} mr={"50px"}>
