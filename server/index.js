@@ -17,6 +17,10 @@ app.use(cors());
 app.use("/notes", noteRoutes);
 app.use("/users", userRoutes);
 
+app.get("/", (req, res) => {
+  res.send("App is running!");
+});
+
 const PORT = process.env.PORT || 3001;
 
 mongoose
