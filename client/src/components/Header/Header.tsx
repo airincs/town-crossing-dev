@@ -41,7 +41,7 @@ const Header: FC = () => {
   return (
     <Flex
       maxW={"100vw"}
-      minH={"5vh"}
+      minH={{ base: "7vh", md: "5vh" }}
       bg={"gray.700"}
       gap={"20px"}
       shadow={"lg"}
@@ -145,9 +145,30 @@ const Header: FC = () => {
           )}
         </Flex>
       ) : (
-        <Flex justify={"space-between"} align={"center"} w={"100%"} h={"5vh"}>
+        <Flex justify={"space-between"} align={"center"} w={"100%"}>
           <Flex ml={"10px"}>
-            <Text color={"white"}>Town Crossing</Text>
+            {!user ? (
+              <Text color={"white"}>Town Crossing</Text>
+            ) : (
+              <MotionFlex
+                justify={"center"}
+                align={"center"}
+                height={"40px"}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 1.1 }}
+                ml={"10px"}
+              >
+                <Avatar
+                  bg={"transparent"}
+                  size={"md"}
+                  name={user.result.avatar}
+                  src={user.result.avatar}
+                />
+                <Text fontSize={"2xl"} fontWeight={"300"} color={"cyan.300"}>
+                  {user.result.username}
+                </Text>
+              </MotionFlex>
+            )}
           </Flex>
           <Flex mr={"10px"}>
             <HeaderMenu />

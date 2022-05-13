@@ -88,9 +88,10 @@ const NoteForm = () => {
         onClick={onOpen}
         w={"50%"}
         position="absolute"
-        bottom={4}
+        bottom={{ base: 0, md: 4 }}
         roundedTop={"0px"}
         roundedBottom={"5px"}
+        height={{ base: "5%", md: "4%" }}
       >
         Post a Note!
       </Button>

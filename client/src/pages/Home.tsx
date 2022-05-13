@@ -15,7 +15,11 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <Flex direction={"column"} align={"center"} h={"95vh"}>
+    <Flex
+      direction={"column"}
+      align={"center"}
+      h={{ base: "93vh", md: "95vh" }}
+    >
       <Container
         display={"flex"}
         flexDirection={"column"}
@@ -24,7 +28,7 @@ const Home: FC = () => {
         paddingTop={"5vh"}
         justifyContent={"center"}
         maxW={{ base: "80vw", md: "80vw" }}
-        minH={"95vh"}
+        minH={{ base: "93vh", md: "95vh" }}
       >
         <Flex
           bg={"gray.700"}
@@ -38,7 +42,11 @@ const Home: FC = () => {
           justify={"space-between"}
         >
           <Flex justify={"center"} flexDirection={"column"} align={"center"}>
-            <Text fontSize={"3xl"} fontWeight={"black"} letterSpacing={4}>
+            <Text
+              fontSize={{ base: "xl", md: "3xl" }}
+              fontWeight={"black"}
+              letterSpacing={4}
+            >
               Town Crossing
             </Text>
             <Text>Welcome!</Text>

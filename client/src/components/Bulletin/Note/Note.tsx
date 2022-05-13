@@ -43,7 +43,7 @@ const Note = ({ note }: AppProps) => {
       rounded={"25px"}
       align={"center"}
       bg={note.color}
-      w={{ base: "350px", md: "500px" }}
+      w={{ base: "300px", sm: "375px", md: "500px", lg: "600px" }}
       h={{ base: "300px", md: "150px" }}
       marginBottom={"5px"}
       gap={"5px"}

@@ -64,9 +64,10 @@ const Bulletin: FC = () => {
     <Flex
       direction={"column"}
       align={"center"}
-      width={{ base: "100vw", md: "80vw" }}
+      width={{ base: "90vw", md: "80vw" }}
       paddingBottom={"50px"}
       position={"relative"}
+      h={{ base: "87vh", md: "100%" }}
     >
       <NoteForm />
       <Flex
@@ -75,13 +76,14 @@ const Bulletin: FC = () => {
         width={{ base: "100%", md: "90%" }}
         align={"center"}
         maxH={"80vh"}
+        height={{ base: "inheret", md: "79vh" }}
         paddingTop={"30px"}
         paddingBottom={"30px"}
         marginTop={"10px"}
         marginBottom={"10px"}
       >
         {searchedNotes.map((note: any) => (
-          <Flex key={note._id} shadow={"2xl"} shrink={1}>
+          <Flex key={note._id} shadow={"2xl"} shrink={0}>
             <Note note={note} />
           </Flex>
         ))}
@@ -94,8 +96,9 @@ const Bulletin: FC = () => {
           onClick={onOpen}
           roundedTop={"5px"}
           roundedBottom={"0px"}
+          height={{ base: "50vh", sm: "30vh", md: "4vh" }}
         >
-          Search for a Message/Title!
+          Search!
         </Button>
       ) : (
         <Button
@@ -105,6 +108,7 @@ const Bulletin: FC = () => {
           roundedTop={"5px"}
           roundedBottom={"0px"}
           type={"button"}
+          height={{ base: "10vh", sm: "10vh", md: "5vh" }}
           onClick={refresh}
         >
           Reset Bulletin!
